@@ -3,7 +3,7 @@
 <head>
   <meta charset="UTF-8" />
   <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-  <title>Mochi and Boba Atelier</title>
+  <title>𖹭 ֶָ֢ Mochi and Boba Atelier ִֶָ🪽་༘</title>
   <link rel="preconnect" href="https://fonts.googleapis.com" />
   <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
   <link
@@ -547,7 +547,7 @@
       🧁 Kitchen
     </button>
     <button type="button" class="sound-btn" id="soundToggle" onclick="toggleSound()" title="Toggle Doorbell Chimes">
-      🔔
+      🎐 
     </button>
   </nav>
 
@@ -571,7 +571,7 @@
       <div class="scene-box">
         <!-- Floating Door Hint Chip -->
         <button type="button" class="badge-chip" style="top: 56%; left: 50%; transform: translateX(-50%);" onclick="enterHouse()">
-          🚪 Tap Door to Enter
+           ᨳଓ Tap Door to Enter
         </button>
 
         <!-- Hand-Crafted SVG: Pastel Pink Brick Cottage Exterior (Strictly Zero Cats) -->
@@ -755,10 +755,10 @@
 
       <div class="room-footer">
         <span style="font-size: 12px; color: var(--ink-muted); font-weight: 600;">
-          🌸 Step 1 of 3 · Welcome Home
+           💌 Step 1 of 3 · Welcome Home
         </span>
         <button type="button" class="btn-primary" onclick="enterHouse()">
-          Enter House →
+          Enter House 𑣲₍ᐢ. .ᐢ₎
         </button>
       </div>
   </section>
@@ -1123,7 +1123,7 @@
   <div id="memoriesModal" class="modal-backdrop" onclick="backdropClose(event, 'memoriesModal')">
     <div class="modal-card">
       <div class="modal-top">
-        <h2>🖼️ Living Room Memory Wall</h2>
+        <h2>🧸Living Room Memory Wall</h2>
         <button type="button" class="close-btn" onclick="closeModal('memoriesModal')">✕</button>
       </div>
       <div class="modal-body" id="memoriesContainer"></div>
@@ -1142,7 +1142,7 @@
           <input type="text" id="diaryTitleInput" class="diary-input" placeholder="Memory title (e.g. Rainy Afternoon Tea)..." required maxlength="45" />
           <textarea id="diaryBodyInput" class="diary-input" rows="2" placeholder="Write what made today feel special..." required maxlength="180"></textarea>
           <button type="submit" class="btn-primary" style="align-self: flex-end; padding: 8px 14px; font-size: 12px;">
-            Save to Scrapbook ✨
+            Save to Scrapbook🧸
           </button>
         </form>
         <div id="diaryEntriesContainer" style="display: flex; flex-direction: column; gap: 10px;"></div>
@@ -1178,7 +1178,7 @@
   <div id="recipesModal" class="modal-backdrop" onclick="backdropClose(event, 'recipesModal')">
     <div class="modal-card">
       <div class="modal-top">
-        <h2>🧁 My Kitchen Baking Recipes</h2>
+        <h2>🥞 My Baking Recipes</h2>
         <button type="button" class="close-btn" onclick="closeModal('recipesModal')">✕</button>
       </div>
       <div class="modal-body" id="recipesContainer"></div>
@@ -1188,7 +1188,7 @@
   <div id="snacksModal" class="modal-backdrop" onclick="backdropClose(event, 'snacksModal')">
     <div class="modal-card">
       <div class="modal-top">
-        <h2>🍓 Pantry Snacks &amp; Sweet Treats</h2>
+        <h2> 🥧 Pantry Snacks &amp; 🧁 Sweet Treats</h2>
         <button type="button" class="close-btn" onclick="closeModal('snacksModal')">✕</button>
       </div>
       <div class="modal-body" id="snacksContainer"></div>
@@ -1217,7 +1217,7 @@
         note: "Warm crusty bread and golden brioche from the corner bakery, paired with whipped honey butter."
       },
       {
-        icon: "✨",
+        icon: "⭐",
         title: "Starlight Postcard Keepsake",
         date: "Frame #4 · pic4",
         note: "A pastel postcard reminding us to slow down, enjoy warm tea, and treasure quiet everyday moments."
@@ -1280,7 +1280,7 @@
         note: "Fresh strawberry puree swirled with cold creamy milk and served in our polka-dot mason jar with a pink straw."
       },
       {
-        icon: "🍡",
+        icon: "🍝",
         title: "Pastel Macaron & Biscuit Tin",
         badge: "Tea Time · Crisp",
         note: "Bite-sized rose, pistachio, and vanilla cream macarons baked fresh for afternoon tea in the living room."
@@ -1331,8 +1331,8 @@
     function toggleSound() {
       soundEnabled = !soundEnabled;
       const btn = document.getElementById("soundToggle");
-      btn.textContent = soundEnabled ? "🔔" : "🔕";
-      showToast(soundEnabled ? "🔔 Doorbell chimes ON" : "🔕 Doorbell chimes muted");
+      btn.textContent = soundEnabled ? "🎐" : "🔕";
+      showToast(soundEnabled ? " 🎐 Doorbell chimes ON" : "🔕 Doorbell chimes muted");
       if (soundEnabled) playChime([659.25, 880]);
     }
 
@@ -1347,7 +1347,7 @@
 
     function enterHouse() {
       playChime([523.25, 659.25, 783.99, 1046.5]);
-      showToast("✨ Welcome inside the Living Room!");
+      showToast(" ִֶָ🪽་༘ Welcome inside the Living Room!");
       goToRoom("living");
     }
 
@@ -1459,7 +1459,7 @@
       bodyInput.value = "";
       renderDiaryEntries();
       playChime([659.25, 783.99, 1046.5]);
-      showToast("📖 Saved memory to your scrapbook!");
+      showToast("🩷 Saved memory to your scrapbook!");
     }
 
     let toastTimeout = null;
