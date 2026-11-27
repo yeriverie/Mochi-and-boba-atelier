@@ -1484,15 +1484,6 @@
       }[ch]));
     }
 
-      
-      const bgMusic = document.getElementById("bgMusic");
-let musicEnabled = true;
-if (bgMusic) bgMusic.volume = 0.35;
-
-document.addEventListener("pointerdown", () => {
-  if (bgMusic && musicEnabled) bgMusic.play().catch(() => {});
-}, { once: true });
-
 const bgMusic = document.getElementById("bgMusic");
 if (bgMusic) {
   bgMusic.volume = 0.35;
