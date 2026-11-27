@@ -69,15 +69,15 @@
       letter-spacing: 0.5px;
     }
 
-    /* Horizontal 4-Tab Pill Navigation Bar */
+    /* Horizontal 3-Tab Pill Navigation Bar */
     .top-nav {
       display: grid;
-      grid-template-columns: repeat(4, 1fr);
-      gap: 5px;
+      grid-template-columns: repeat(3, 1fr);
+      gap: 6px;
       background: var(--card-white);
       border: 1.5px solid var(--border-soft);
       border-radius: 999px;
-      padding: 5px;
+      padding: 6px;
       box-shadow: var(--shadow-soft);
     }
 
@@ -86,14 +86,12 @@
       background: transparent;
       color: var(--ink-plum);
       font-family: "Fredoka", "Quicksand", sans-serif;
-      font-size: 0.72rem;
+      font-size: 0.8rem;
       font-weight: 500;
-      padding: 8px 4px;
+      padding: 8px 6px;
       border-radius: 999px;
       cursor: pointer;
       white-space: nowrap;
-      overflow: hidden;
-      text-overflow: ellipsis;
       transition: all 0.2s ease;
     }
 
@@ -147,8 +145,6 @@
       background: var(--pink-tint);
       box-shadow: 0 3px 10px rgba(232, 130, 163, 0.22);
       overflow: hidden;
-      display: grid;
-      place-items: center;
     }
 
     .pfp-slot img {
@@ -213,7 +209,7 @@
       white-space: nowrap;
     }
 
-    /* 3. Living Room Gallery Wall Custom Photo Slots */
+    /* 3. Living Room Gallery Wall Custom Photo Slots (3 pics) */
     .gallery-photo-slot {
       position: absolute;
       background: #ffffff;
@@ -239,33 +235,26 @@
       background: #fff8ec;
     }
 
-    /* Frame positions matching the Living Room gallery wall */
+    /* 3 balanced frames on the Living Room wall */
     .frame-1 {
-      top: 19.5%;
-      left: 19.5%;
-      width: 15.5%;
-      height: 12%;
+      top: 23%;
+      left: 20%;
+      width: 17%;
+      height: 18%;
     }
 
     .frame-2 {
-      top: 33.5%;
-      left: 26.5%;
-      width: 12%;
-      height: 14.5%;
+      top: 21%;
+      left: 40%;
+      width: 21%;
+      height: 24%;
     }
 
     .frame-3 {
-      top: 23%;
-      left: 41%;
-      width: 19.5%;
-      height: 22.5%;
-    }
-
-    .frame-4 {
-      top: 34.5%;
-      left: 62.5%;
-      width: 14%;
-      height: 11%;
+      top: 24%;
+      left: 64%;
+      width: 17%;
+      height: 18%;
     }
 
     /* Card Footer & Buttons */
@@ -379,7 +368,8 @@
       margin-bottom: 16px;
     }
   </style>
-  </head>
+</head>
+
   <body>
   <div class="app-shell">
     <!-- 1. Top Main Headline -->
@@ -387,24 +377,19 @@
       <h1 class="atelier-headline">Mochi and Boba Atelier</h1>
     </header>
 
-    <!-- Horizontal Room Navigation Pill Bar (4 Tabs) -->
+    <!-- Horizontal Room Navigation Pill Bar (3 Tabs) -->
     <nav class="top-nav" aria-label="Room navigation">
       <button class="nav-pill active" data-room="yard" type="button">🏡 Front Yard</button>
       <button class="nav-pill" data-room="living" type="button">🛋️ Living Room</button>
       <button class="nav-pill" data-room="kitchen" type="button">🧁 Kitchen</button>
-      <button class="nav-pill" data-room="studio" type="button">🎀 Atelier</button>
     </nav>
 
     <!-- ROOM 1: FRONT YARD -->
     <main class="room-card active" id="room-yard">
       <div class="card-header">
-        <!-- Circular PFP Slot: replace src with your own avatar image path -->
+        <!-- Circular PFP Slot: upload your file as pfp.jpg (or change filename below) -->
         <div class="pfp-slot">
-          <img
-            src="pfp.png"
-            alt="Profile avatar"
-            onerror="this.src='data:image/svg+xml;utf8,<svg xmlns=%22http://www.w3.org/2000/svg%22 viewBox=%220 0 80 80%22><rect width=%2280%22 height=%2280%22 fill=%22%23fdeef3%22/><circle cx=%2240%22 cy=%2232%22 r=%2214%22 fill=%22%23f59bb7%22/><path d=%22M18 70 c4-16 40-16 44 0%22 fill=%22%23f59bb7%22/></svg>'"
-          />
+          <img src="pfp.jpg" alt="Profile avatar" />
         </div>
         <div class="card-title-wrap">
           <h2>Rosebud Pastel Cottage</h2>
@@ -560,21 +545,17 @@
       </div>
 
       <div class="card-footer">
-        <span class="step-label">🌸 Step 1 of 4 · Welcome Home</span>
+        <span class="step-label">🌸 Step 1 of 3 · Welcome Home</span>
         <button class="btn-primary" data-action="enter-house" type="button">
           Enter House →
         </button>
       </div>
     </main>
-        <!-- ROOM 2: LIVING ROOM (No floating text pills + custom gallery wall <img> photo slots) -->
+        <!-- ROOM 2: LIVING ROOM (Clean artwork + 3 local photo file slots) -->
     <section class="room-card" id="room-living">
       <div class="card-header">
         <div class="pfp-slot">
-          <img
-            src="pfp.png"
-            alt="Profile avatar"
-            onerror="this.src='data:image/svg+xml;utf8,<svg xmlns=%22http://www.w3.org/2000/svg%22 viewBox=%220 0 80 80%22><rect width=%2280%22 height=%2280%22 fill=%22%23fdeef3%22/><circle cx=%2240%22 cy=%2232%22 r=%2214%22 fill=%22%23f59bb7%22/><path d=%22M18 70 c4-16 40-16 44 0%22 fill=%22%23f59bb7%22/></svg>'"
-          />
+          <img src="pfp.jpg" alt="Profile avatar" />
         </div>
         <div class="card-title-wrap">
           <h2>Cozy Pastel Living Room</h2>
@@ -662,37 +643,17 @@
           </g>
         </svg>
 
-        <!-- 4 Custom Photo Slots on the Gallery Wall (replace src="photo1.jpg" etc. with your images) -->
+        <!-- 3 Local Photo File Slots (upload pic1.jpg, pic2.jpg, pic3.jpg to your folder) -->
         <div class="gallery-photo-slot frame-1" data-modal="memory" title="Gallery Photo 1">
-          <img
-            src="photo1.jpg"
-            alt="Memory photo 1"
-            onerror="this.src='data:image/svg+xml;utf8,<svg xmlns=%22http://www.w3.org/2000/svg%22 viewBox=%220 0 100 80%22><rect width=%22100%22 height=%2280%22 fill=%22%23fff7eb%22/><circle cx=%2250%22 cy=%2240%22 r=%2214%22 fill=%22%23f79eb8%22/></svg>'"
-          />
+          <img src="pic1.jpg" alt="Memory photo 1" />
         </div>
 
         <div class="gallery-photo-slot frame-2" data-modal="memory" title="Gallery Photo 2">
-          <img
-            src="photo2.jpg"
-            alt="Memory photo 2"
-            onerror="this.src='data:image/svg+xml;utf8,<svg xmlns=%22http://www.w3.org/2000/svg%22 viewBox=%220 0 80 100%22><rect width=%2280%22 height=%22100%22 fill=%22%23eef9f0%22/><circle cx=%2232%22 cy=%2245%22 r=%229%22 fill=%22%23f79eb8%22/><circle cx=%2250%22 cy=%2245%22 r=%229%22 fill=%22%23ffe08c%22/></svg>'"
-          />
+          <img src="pic2.jpg" alt="Memory photo 2" />
         </div>
 
         <div class="gallery-photo-slot frame-3" data-modal="memory" title="Gallery Photo 3">
-          <img
-            src="photo3.jpg"
-            alt="Memory photo 3"
-            onerror="this.src='data:image/svg+xml;utf8,<svg xmlns=%22http://www.w3.org/2000/svg%22 viewBox=%220 0 100 120%22><rect width=%22100%22 height=%22120%22 fill=%22%23fff8ec%22/><circle cx=%2250%22 cy=%2255%22 r=%2220%22 fill=%22%23f5bd7a%22/></svg>'"
-          />
-        </div>
-
-        <div class="gallery-photo-slot frame-4" data-modal="memory" title="Gallery Photo 4">
-          <img
-            src="photo4.jpg"
-            alt="Memory photo 4"
-            onerror="this.src='data:image/svg+xml;utf8,<svg xmlns=%22http://www.w3.org/2000/svg%22 viewBox=%220 0 100 80%22><rect width=%22100%22 height=%2280%22 fill=%22%23fff7cc%22/><circle cx=%2238%22 cy=%2240%22 r=%228%22 fill=%22%239bd2f5%22/><circle cx=%2262%22 cy=%2242%22 r=%228%22 fill=%22%23f79eb8%22/></svg>'"
-          />
+          <img src="pic3.jpg" alt="Memory photo 3" />
         </div>
       </div>
 
@@ -701,15 +662,12 @@
         <button class="btn-primary" data-room="kitchen" type="button">Go to Kitchen →</button>
       </div>
     </section>
-    <!-- ROOM 3: KITCHEN (Clean illustration without floating pills; items remain clickable) -->
+
+        <!-- ROOM 3: KITCHEN (Clean illustration without floating pills; items remain clickable) -->
     <section class="room-card" id="room-kitchen">
       <div class="card-header">
         <div class="pfp-slot">
-          <img
-            src="pfp.png"
-            alt="Profile avatar"
-            onerror="this.src='data:image/svg+xml;utf8,<svg xmlns=%22http://www.w3.org/2000/svg%22 viewBox=%220 0 80 80%22><rect width=%2280%22 height=%2280%22 fill=%22%23fdeef3%22/><circle cx=%2240%22 cy=%2232%22 r=%2214%22 fill=%22%23f59bb7%22/><path d=%22M18 70 c4-16 40-16 44 0%22 fill=%22%23f59bb7%22/></svg>'"
-          />
+          <img src="pfp.jpg" alt="Profile avatar" />
         </div>
         <div class="card-title-wrap">
           <h2>Pastel Gingham Kitchen</h2>
@@ -814,62 +772,6 @@
 
       <div class="card-footer">
         <button class="btn-soft" data-room="living" type="button">← Back to Living Room</button>
-        <button class="btn-primary" data-room="studio" type="button">Visit Atelier →</button>
-      </div>
-    </section>
-
-    <!-- ROOM 4: ATELIER CORNER -->
-    <section class="room-card" id="room-studio">
-      <div class="card-header">
-        <div class="pfp-slot">
-          <img
-            src="pfp.png"
-            alt="Profile avatar"
-            onerror="this.src='data:image/svg+xml;utf8,<svg xmlns=%22http://www.w3.org/2000/svg%22 viewBox=%220 0 80 80%22><rect width=%2280%22 height=%2280%22 fill=%22%23fdeef3%22/><circle cx=%2240%22 cy=%2232%22 r=%2214%22 fill=%22%23f59bb7%22/><path d=%22M18 70 c4-16 40-16 44 0%22 fill=%22%23f59bb7%22/></svg>'"
-          />
-        </div>
-        <div class="card-title-wrap">
-          <h2>Mochi &amp; Boba Craft Nook</h2>
-          <p>Tap the boba cup or sketchbook on the desk</p>
-        </div>
-      </div>
-
-      <div class="scene-box">
-        <svg viewBox="0 0 360 360" class="scene-svg" aria-label="Mochi and Boba Craft Nook">
-          <rect width="360" height="250" fill="#fcf3f7" />
-          <rect y="250" width="360" height="110" fill="#f7e4ec" />
-          <!-- Window -->
-          <g stroke="#6b565c" stroke-width="1.6">
-            <rect x="115" y="45" width="130" height="120" rx="14" fill="#ffffff" />
-            <rect x="123" y="53" width="114" height="104" rx="10" fill="#eaf5fd" />
-            <line x1="180" y1="53" x2="180" y2="157" />
-            <line x1="123" y1="105" x2="237" y2="105" />
-          </g>
-          <!-- Desk -->
-          <g stroke="#6b565c" stroke-width="1.6">
-            <rect x="40" y="220" width="280" height="14" rx="6" fill="#f7d3be" />
-            <rect x="58" y="234" width="14" height="100" fill="#ffffff" />
-            <rect x="288" y="234" width="14" height="100" fill="#ffffff" />
-          </g>
-          <!-- Clickable Sketchbook -->
-          <g class="svg-hotspot" data-modal="diary" stroke="#6b565c" stroke-width="1.6">
-            <rect x="105" y="198" width="84" height="22" rx="4" fill="#ffffff" />
-            <rect x="110" y="193" width="74" height="8" rx="3" fill="#f7a8c2" />
-          </g>
-          <!-- Clickable Boba Cup -->
-          <g class="svg-hotspot" data-modal="boba" stroke="#6b565c" stroke-width="1.6">
-            <rect x="236" y="150" width="7" height="32" rx="3" transform="rotate(12 236 150)" fill="#f59bb7" />
-            <polygon points="214,178 248,178 243,220 219,220" fill="#f7dfc2" />
-            <ellipse cx="231" cy="178" rx="19" ry="5" fill="#ffffff" />
-            <circle cx="225" cy="212" r="3.5" fill="#6b4c4c" />
-            <circle cx="236" cy="213" r="3.5" fill="#6b4c4c" />
-            <circle cx="231" cy="206" r="3.5" fill="#6b4c4c" />
-          </g>
-        </svg>
-      </div>
-
-      <div class="card-footer">
-        <button class="btn-soft" data-room="kitchen" type="button">← Back to Kitchen</button>
         <button class="btn-primary" data-room="yard" type="button">Front Yard 🏡</button>
       </div>
     </section>
@@ -891,7 +793,7 @@
       memory: {
         badge: "🖼️ Living Room · Memory Wall",
         title: "Gallery Wall Memories",
-        body: "Replace photo1.jpg through photo4.jpg in the HTML with your own favorite snapshots to display them inside these pastel frames!"
+        body: "Precious snapshots and keepsakes hanging on our cozy living room wall."
       },
       diary: {
         badge: "📖 Scrapbook & Sketchbook",
@@ -917,11 +819,6 @@
         badge: "🍯 Kitchen · Jam & Honey",
         title: "Peach Blossom Jam",
         body: "Small-batch summer peaches simmered with lemon zest and clover honey."
-      },
-      boba: {
-        badge: "🧋 Atelier · House Special",
-        title: "Brown Sugar Oat Boba",
-        body: "Chewy brown-sugar tapioca pearls swirled into creamy oat milk tea."
       }
     };
 
@@ -981,4 +878,4 @@
 </body>
 </html>
 
-    
+        
