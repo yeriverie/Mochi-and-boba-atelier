@@ -552,10 +552,7 @@
       🎐 
     </button>
   </nav>
-<audio id="bgMusic" src="bg-music.mp3" autoplay loop preload="auto"></audio>
-  
-  
-  <button type="button" class="sound-btn" id="musicToggle" onclick="toggleMusic()" title="Toggle Background Music">🎵</button>
+<audio id="bgMusic" src="bgm.mp3" autoplay loop preload="auto"></audio>
   
   <!-- =========================================================================
        MAIN DOLLHOUSE STAGE
@@ -1486,6 +1483,8 @@
         "'": "&#39;"
       }[ch]));
     }
+
+      
       const bgMusic = document.getElementById("bgMusic");
 let musicEnabled = true;
 if (bgMusic) bgMusic.volume = 0.35;
@@ -1494,19 +1493,18 @@ document.addEventListener("pointerdown", () => {
   if (bgMusic && musicEnabled) bgMusic.play().catch(() => {});
 }, { once: true });
 
-function toggleMusic() {
-  if (!bgMusic) return;
-  musicEnabled = !musicEnabled;
-  const btn = document.getElementById("musicToggle");
-  if (btn) btn.textContent = musicEnabled ? "🎵" : "🔇";
-  if (musicEnabled) {
-    bgMusic.play().catch(() => {});
-    showToast("🎵 Background music ON");
-  } else {
-    bgMusic.pause();
-    showToast("🔇 Background music paused");
-  }
+const bgMusic = document.getElementById("bgMusic");
+if (bgMusic) {
+  bgMusic.volume = 0.35;
+  bgMusic.play().catch(() => {});
 }
+
+document.addEventListener("pointerdown", () => {
+  if (bgMusic && bgMusic.paused) {
+    bgMusic.play().catch(() => {});
+  }
+}, { once: true });
+      
       
   </script>
 </body>
