@@ -7,306 +7,357 @@
   <link rel="preconnect" href="https://fonts.googleapis.com" />
   <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
   <link
-    href="https://fonts.googleapis.com/css2?family=Alex+Brush&family=Fredoka:wght@500;600&family=Quicksand:wght@500;600;700&display=swap"
+    href="https://fonts.googleapis.com/css2?family=Alex+Brush&family=Fredoka:wght@500;600;700&display=swap"
     rel="stylesheet"
   />
   <style>
+    /* =========================================================================
+       1. DESIGN TOKENS & RESET (Zero external dependencies for instant mobile load)
+       ========================================================================= */
     :root {
-      --bg-cream: #fffafb;
-      --dot-pink: #f4d8e2;
-      --card-white: #ffffff;
-      --border-soft: #f3dce4;
-      --pink-pill: #f59bb7;
-      --pink-pill-dark: #e882a3;
-      --pink-tint: #fdeef3;
-      --cream-btn: #fbf7e6;
-      --ink-plum: #593b47;
-      --ink-muted: #8a6e79;
-      --shadow-soft: 0 12px 30px rgba(173, 120, 140, 0.14);
+      --bg-blush: #FFF5F8;
+      --pink-soft: #FCE4EC;
+      --pink-rose: #F8BBD0;
+      --pink-deep: #D87093;
+      --cream-warm: #FFF9E6;
+      --mint-sage: #E8F5E9;
+      --lavender-sofa: #DCE2FF;
+      --ink-brown: #5C4348;
+      --ink-muted: #8A6D73;
+      --white-pure: #FFFFFF;
+      --border-outline: #7A5C61;
     }
 
     * {
       box-sizing: border-box;
       margin: 0;
       padding: 0;
+      -webkit-tap-highlight-color: transparent;
     }
 
     body {
+      font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, Helvetica, Arial, sans-serif;
+      background-color: var(--bg-blush);
+      background-image:
+        radial-gradient(var(--pink-rose) 1.5px, transparent 1.5px),
+        radial-gradient(#FFE0B2 1.5px, transparent 1.5px);
+      background-size: 40px 40px;
+      background-position: 0 0, 20px 20px;
+      color: var(--ink-brown);
       min-height: 100vh;
-      font-family: "Quicksand", sans-serif;
-      color: var(--ink-plum);
-      background-color: var(--bg-cream);
-      background-image: radial-gradient(var(--dot-pink) 2px, transparent 2px),
-        radial-gradient(#f8e9d2 2px, var(--bg-cream) 2px);
-      background-size: 32px 32px;
-      background-position: 0 0, 16px 16px;
-      display: flex;
-      justify-content: center;
-      padding: 16px 12px 36px;
-    }
-
-    .app-shell {
-      width: 100%;
-      max-width: 440px;
       display: flex;
       flex-direction: column;
-      gap: 12px;
+      align-items: center;
+      padding: 12px 12px 28px;
     }
 
-    /* 1. Top Storybook / Hand-lettered Headline */
-    .atelier-header {
+    /* Main Atelier Headline */
+    .site-headline-wrap {
+      width: 100%;
+      max-width: 560px;
       text-align: center;
-      padding: 6px 10px 2px;
+      margin-bottom: 10px;
+      padding: 4px 8px;
     }
 
-    .atelier-headline {
+    .site-headline {
       font-family: "Alex Brush", "Fredoka", cursive;
-      font-size: clamp(2.25rem, 9vw, 2.9rem);
+      font-size: clamp(2.2rem, 8.5vw, 3rem);
       font-weight: 400;
       line-height: 1.1;
-      color: #6b4b69;
+      color: #6E4D6B;
       text-shadow: 0 2px 0 rgba(255, 255, 255, 0.95);
-      letter-spacing: 0.5px;
     }
 
-    /* Horizontal 3-Tab Pill Navigation Bar */
+    /* =========================================================================
+       2. TOP ROOM NAVIGATION BAR
+       ========================================================================= */
     .top-nav {
-      display: grid;
-      grid-template-columns: repeat(3, 1fr);
-      gap: 6px;
-      background: var(--card-white);
-      border: 1.5px solid var(--border-soft);
+      width: 100%;
+      max-width: 560px;
+      background: var(--white-pure);
+      border: 2px solid var(--pink-rose);
       border-radius: 999px;
       padding: 6px;
-      box-shadow: var(--shadow-soft);
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      gap: 6px;
+      box-shadow: 0 6px 18px rgba(216, 112, 147, 0.12);
+      margin-bottom: 12px;
     }
 
     .nav-pill {
-      border: 1.5px solid transparent;
+      flex: 1;
+      border: none;
       background: transparent;
-      color: var(--ink-plum);
-      font-family: "Fredoka", "Quicksand", sans-serif;
-      font-size: 0.8rem;
-      font-weight: 500;
-      padding: 8px 6px;
+      color: var(--ink-muted);
+      font-size: 12px;
+      font-weight: 700;
+      padding: 9px 8px;
       border-radius: 999px;
       cursor: pointer;
+      transition: all 0.25s ease;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      gap: 5px;
       white-space: nowrap;
-      transition: all 0.2s ease;
     }
 
     .nav-pill.active {
-      background: var(--pink-tint);
-      border-color: #eab9c9;
-      color: var(--ink-plum);
+      background: var(--pink-soft);
+      color: var(--ink-brown);
+      box-shadow: inset 0 0 0 1.5px var(--pink-rose);
     }
 
-    /* Main Room Card */
-    .room-card {
-      display: none;
-      background: var(--card-white);
-      border: 1.5px solid var(--border-soft);
+    .sound-btn {
+      border: 1.5px solid var(--pink-rose);
+      background: var(--cream-warm);
+      color: var(--ink-brown);
+      width: 34px;
+      height: 34px;
+      border-radius: 50%;
+      font-size: 14px;
+      cursor: pointer;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      flex-shrink: 0;
+    }
+
+    /* =========================================================================
+       3. DOLLHOUSE STAGE & ROOM TRANSITIONS
+       ========================================================================= */
+    .stage-wrapper {
+      width: 100%;
+      max-width: 560px;
+      background: var(--white-pure);
+      border: 4px solid var(--white-pure);
       border-radius: 28px;
-      padding: 16px 14px 16px;
-      box-shadow: var(--shadow-soft);
-      animation: fadeSlide 0.25s ease;
+      box-shadow: 0 12px 32px rgba(180, 110, 130, 0.16);
+      overflow: hidden;
+      position: relative;
     }
 
-    .room-card.active {
-      display: block;
+    .room-screen {
+      display: none;
+      flex-direction: column;
+      animation: roomFadeIn 0.4s ease forwards;
     }
 
-    @keyframes fadeSlide {
+    .room-screen.active {
+      display: flex;
+    }
+
+    @keyframes roomFadeIn {
       from {
         opacity: 0;
-        transform: translateY(6px);
+        transform: translateY(8px) scale(0.99);
       }
       to {
         opacity: 1;
-        transform: translateY(0);
+        transform: translateY(0) scale(1);
       }
     }
 
-    /* 2. Card Header with Circular PFP Slot */
-    .card-header {
+    .room-header {
+      padding: 14px 18px 10px;
+      background: linear-gradient(180deg, #FFF9FB 0%, #FFF2F6 100%);
+      border-bottom: 1.5px dashed var(--pink-rose);
       display: flex;
       align-items: center;
       gap: 12px;
-      padding: 0 4px 12px;
-      border-bottom: 1.5px dashed var(--border-soft);
     }
 
-    .pfp-slot {
+    .pfp-avatar {
       width: 48px;
       height: 48px;
-      flex-shrink: 0;
       border-radius: 50%;
-      border: 2.5px solid #f4b6ca;
-      background: var(--pink-tint);
-      box-shadow: 0 3px 10px rgba(232, 130, 163, 0.22);
-      overflow: hidden;
-    }
-
-    .pfp-slot img {
-      width: 100%;
-      height: 100%;
       object-fit: cover;
-      display: block;
+      border: 2.5px solid var(--pink-rose);
+      background: var(--pink-soft);
+      flex-shrink: 0;
+      box-shadow: 0 3px 10px rgba(216, 112, 147, 0.18);
     }
 
-    .card-title-wrap h2 {
-      font-family: "Fredoka", "Quicksand", sans-serif;
-      font-size: 1.12rem;
-      font-weight: 600;
-      color: var(--ink-plum);
-      line-height: 1.2;
+    .room-title-group h1 {
+      font-size: 17px;
+      font-weight: 800;
+      color: var(--ink-brown);
+      letter-spacing: -0.01em;
     }
 
-    .card-title-wrap p {
-      font-size: 0.78rem;
+    .room-title-group p {
+      font-size: 12px;
       color: var(--ink-muted);
-      margin-top: 3px;
+      margin-top: 2px;
     }
 
-    /* Scene Container */
+    /* SVG Scene Container & Interactive Hotspots */
     .scene-box {
       position: relative;
-      margin-top: 12px;
-      border-radius: 18px;
-      overflow: hidden;
-      border: 1.5px solid #f6e7ec;
-      aspect-ratio: 1 / 1;
+      width: 100%;
+      background: #FFF9FB;
+      user-select: none;
     }
 
     .scene-svg {
       display: block;
       width: 100%;
-      height: 100%;
+      height: auto;
     }
 
-    .svg-hotspot {
+    .hotspot-group {
       cursor: pointer;
-      transition: opacity 0.18s ease;
+      transition: transform 0.2s ease, filter 0.2s ease;
     }
 
-    .svg-hotspot:hover {
-      opacity: 0.88;
+    .hotspot-group:hover {
+      filter: brightness(1.03) drop-shadow(0 3px 6px rgba(216, 112, 147, 0.35));
     }
 
-    /* Front Yard Door Hint Pill */
-    .hotspot-pill {
+    .hotspot-group:active {
+      transform: scale(0.98);
+    }
+
+    /* Wall Hanging Photo Slots (pic1, pic2, pic3, pic4) */
+    .wall-pic-slot {
       position: absolute;
-      border: 1.5px solid #edd6de;
-      background: rgba(255, 255, 255, 0.96);
-      color: var(--ink-plum);
-      font-family: inherit;
-      font-size: 0.76rem;
-      font-weight: 700;
-      padding: 6px 11px;
-      border-radius: 999px;
-      box-shadow: 0 4px 12px rgba(95, 60, 74, 0.14);
-      cursor: pointer;
-      white-space: nowrap;
-    }
-
-    /* 3. Living Room Gallery Wall Custom Photo Slots (3 pics) */
-    .gallery-photo-slot {
-      position: absolute;
-      background: #ffffff;
-      border: 2px solid #6b565c;
-      border-radius: 5px;
-      padding: 3px;
-      box-shadow: 0 3px 8px rgba(107, 86, 92, 0.12);
-      cursor: pointer;
+      border: 2px solid #8A646B;
+      border-radius: 4px;
+      background: #FFFFFF;
+      padding: 2px;
       overflow: hidden;
+      cursor: pointer;
+      z-index: 4;
+      box-shadow: 0 2px 6px rgba(122, 92, 97, 0.14);
       transition: transform 0.18s ease;
     }
 
-    .gallery-photo-slot:hover {
+    .wall-pic-slot:hover {
       transform: scale(1.03);
     }
 
-    .gallery-photo-slot img {
+    .wall-pic-slot img {
       width: 100%;
       height: 100%;
       object-fit: cover;
-      border-radius: 2px;
       display: block;
-      background: #fff8ec;
+      border-radius: 2px;
     }
 
-    /* 3 balanced frames on the Living Room wall */
-    .frame-1 {
-      top: 23%;
-      left: 20%;
-      width: 17%;
-      height: 18%;
+    .pic-slot-1 {
+      top: 21.3%;
+      left: 21.9%;
+      width: 11.4%;
+      height: 7.0%;
     }
 
-    .frame-2 {
-      top: 21%;
-      left: 40%;
-      width: 21%;
-      height: 24%;
+    .pic-slot-2 {
+      top: 32.4%;
+      left: 28.3%;
+      width: 8.1%;
+      height: 9.6%;
     }
 
-    .frame-3 {
-      top: 24%;
-      left: 64%;
-      width: 17%;
-      height: 18%;
+    .pic-slot-3 {
+      top: 24.6%;
+      left: 42.6%;
+      width: 14.8%;
+      height: 14.8%;
     }
 
-    /* Card Footer & Buttons */
-    .card-footer {
-      margin-top: 14px;
+    .pic-slot-4 {
+      top: 33.3%;
+      left: 63.6%;
+      width: 10.5%;
+      height: 6.1%;
+    }
+
+    /* Floating Hint Badges over Interactive Objects */
+    .badge-chip {
+      position: absolute;
+      background: rgba(255, 255, 255, 0.94);
+      border: 1.5px solid var(--pink-rose);
+      color: var(--ink-brown);
+      font-size: 11px;
+      font-weight: 700;
+      padding: 5px 10px;
+      border-radius: 999px;
+      box-shadow: 0 4px 10px rgba(122, 92, 97, 0.14);
+      cursor: pointer;
+      display: inline-flex;
+      align-items: center;
+      gap: 4px;
+      animation: gentleFloat 2.8s ease-in-out infinite;
+      z-index: 5;
+    }
+
+    .badge-chip:active {
+      transform: scale(0.94);
+    }
+
+    @keyframes gentleFloat {
+      0%, 100% { transform: translateY(0px); }
+      50% { transform: translateY(-4px); }
+    }
+
+    /* Bottom Action Footer inside each Room */
+    .room-footer {
+      padding: 14px 16px;
+      background: var(--white-pure);
+      border-top: 1.5px solid var(--pink-soft);
       display: flex;
+      flex-wrap: wrap;
       align-items: center;
       justify-content: space-between;
-      gap: 8px;
-      flex-wrap: wrap;
-    }
-
-    .step-label {
-      font-size: 0.8rem;
-      font-weight: 600;
-      color: var(--ink-muted);
-    }
-
-    .btn-primary,
-    .btn-soft {
-      font-family: inherit;
-      font-size: 0.84rem;
-      font-weight: 700;
-      padding: 10px 16px;
-      border-radius: 999px;
-      cursor: pointer;
-      transition: transform 0.16s ease, background 0.16s ease;
+      gap: 10px;
     }
 
     .btn-primary {
+      background: linear-gradient(135deg, #FFB6C1 0%, #F48FB1 100%);
+      color: #4A2C33;
       border: none;
-      background: var(--pink-pill);
-      color: #ffffff;
-      box-shadow: 0 6px 14px rgba(245, 155, 183, 0.42);
+      border-radius: 16px;
+      padding: 11px 18px;
+      font-size: 13px;
+      font-weight: 800;
+      cursor: pointer;
+      box-shadow: 0 4px 12px rgba(244, 143, 177, 0.35);
+      transition: transform 0.15s ease;
+      display: inline-flex;
+      align-items: center;
+      gap: 6px;
     }
 
-    .btn-primary:hover {
-      background: var(--pink-pill-dark);
+    .btn-primary:active {
+      transform: scale(0.96);
     }
 
-    .btn-soft {
-      border: 1.5px solid #e9dec2;
-      background: var(--cream-btn);
-      color: var(--ink-plum);
+    .btn-secondary {
+      background: var(--cream-warm);
+      color: var(--ink-brown);
+      border: 1.5px solid #F5D799;
+      border-radius: 16px;
+      padding: 10px 14px;
+      font-size: 12px;
+      font-weight: 700;
+      cursor: pointer;
+      transition: transform 0.15s ease;
     }
 
-    /* Interactive Modal */
+    .btn-secondary:active {
+      transform: scale(0.96);
+    }
+
+    /* =========================================================================
+       4. MODALS (MEMORIES, SCRAPBOOK DIARY, BAKING RECIPES, SNACKS)
+       ========================================================================= */
     .modal-backdrop {
       position: fixed;
       inset: 0;
-      background: rgba(89, 59, 71, 0.35);
-      backdrop-filter: blur(3px);
+      background: rgba(92, 67, 72, 0.45);
       display: none;
       align-items: center;
       justify-content: center;
@@ -316,566 +367,1119 @@
 
     .modal-backdrop.open {
       display: flex;
+      animation: roomFadeIn 0.22s ease forwards;
     }
 
-    .modal-box {
-      position: relative;
-      width: 100%;
-      max-width: 360px;
-      background: #ffffff;
-      border: 2px solid var(--border-soft);
+    .modal-card {
+      background: var(--white-pure);
+      border: 3px solid var(--pink-rose);
       border-radius: 26px;
-      padding: 22px 20px 18px;
-      box-shadow: 0 18px 40px rgba(89, 59, 71, 0.22);
-      text-align: center;
-      animation: fadeSlide 0.2s ease;
+      width: 100%;
+      max-width: 460px;
+      max-height: 85vh;
+      display: flex;
+      flex-direction: column;
+      overflow: hidden;
+      box-shadow: 0 18px 40px rgba(74, 44, 51, 0.25);
     }
 
-    .modal-close {
-      position: absolute;
-      top: 12px;
-      right: 14px;
-      border: none;
-      background: var(--pink-tint);
-      color: var(--ink-plum);
-      width: 28px;
-      height: 28px;
+    .modal-top {
+      padding: 14px 18px;
+      background: var(--pink-soft);
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      border-bottom: 1.5px solid var(--pink-rose);
+    }
+
+    .modal-top h2 {
+      font-size: 16px;
+      font-weight: 800;
+      color: var(--ink-brown);
+    }
+
+    .close-btn {
+      width: 30px;
+      height: 30px;
       border-radius: 50%;
-      font-weight: 700;
+      border: none;
+      background: var(--white-pure);
+      color: var(--ink-brown);
+      font-weight: 800;
+      font-size: 14px;
       cursor: pointer;
     }
 
-    .modal-badge {
-      display: inline-block;
-      background: var(--cream-btn);
-      border: 1px solid #eadcb8;
-      border-radius: 999px;
-      padding: 4px 12px;
-      font-size: 0.75rem;
+    .modal-body {
+      padding: 16px;
+      overflow-y: auto;
+      display: flex;
+      flex-direction: column;
+      gap: 12px;
+    }
+
+    .info-card {
+      background: var(--bg-blush);
+      border: 1.5px solid var(--pink-rose);
+      border-radius: 18px;
+      padding: 13px;
+    }
+
+    .info-card.cream {
+      background: var(--cream-warm);
+      border-color: #F3D19E;
+    }
+
+    .info-card.mint {
+      background: var(--mint-sage);
+      border-color: #B9DFC0;
+    }
+
+    .card-header-row {
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      gap: 8px;
+      margin-bottom: 6px;
+    }
+
+    .card-title {
+      font-size: 14px;
+      font-weight: 800;
+      color: var(--ink-brown);
+    }
+
+    .card-tag {
+      font-size: 11px;
       font-weight: 700;
-      margin-bottom: 8px;
+      padding: 3px 9px;
+      border-radius: 999px;
+      background: var(--white-pure);
+      color: var(--pink-deep);
+      border: 1px solid var(--pink-rose);
     }
 
-    .modal-box h3 {
-      font-size: 1.12rem;
-      margin-bottom: 8px;
+    .card-text {
+      font-size: 12.5px;
+      line-height: 1.5;
+      color: var(--ink-brown);
     }
 
-    .modal-box p {
-      font-size: 0.88rem;
+    .recipe-steps {
+      margin-top: 8px;
+      padding-left: 18px;
+      font-size: 12px;
       line-height: 1.55;
-      color: var(--ink-muted);
-      margin-bottom: 16px;
+      color: var(--ink-brown);
+    }
+
+    .recipe-steps li {
+      margin-bottom: 4px;
+    }
+
+    .diary-form {
+      display: flex;
+      flex-direction: column;
+      gap: 8px;
+      background: var(--cream-warm);
+      padding: 12px;
+      border-radius: 18px;
+      border: 1.5px dashed #E8C07D;
+    }
+
+    .diary-input {
+      width: 100%;
+      padding: 9px 12px;
+      border-radius: 12px;
+      border: 1.5px solid var(--pink-rose);
+      font-family: inherit;
+      font-size: 12.5px;
+      color: var(--ink-brown);
+      background: var(--white-pure);
+    }
+
+    .diary-input:focus {
+      outline: none;
+      border-color: var(--pink-deep);
+    }
+
+    .toast {
+      position: fixed;
+      bottom: 20px;
+      left: 50%;
+      transform: translateX(-50%) translateY(20px);
+      background: var(--ink-brown);
+      color: var(--white-pure);
+      font-size: 12px;
+      font-weight: 700;
+      padding: 9px 16px;
+      border-radius: 999px;
+      opacity: 0;
+      pointer-events: none;
+      transition: all 0.25s ease;
+      z-index: 60;
+      white-space: nowrap;
+    }
+
+    .toast.show {
+      opacity: 1;
+      transform: translateX(-50%) translateY(0);
     }
   </style>
 </head>
+<body>
+  <!-- TOP HEADLINE -->
+  <header class="site-headline-wrap">
+    <div class="site-headline">Mochi and Boba Atelier</div>
+  </header>
 
-  <body>
-  <div class="app-shell">
-    <!-- 1. Top Main Headline -->
-    <header class="atelier-header">
-      <h1 class="atelier-headline">Mochi and Boba Atelier</h1>
-    </header>
+  <!-- =========================================================================
+       TOP NAVIGATION PILLS (3 Sequential Rooms + Chime Toggle)
+       ========================================================================= -->
+  <nav class="top-nav" aria-label="Dollhouse Rooms">
+    <button type="button" class="nav-pill active" id="nav-exterior" onclick="goToRoom('exterior')">
+      🏡 Front Yard
+    </button>
+    <button type="button" class="nav-pill" id="nav-living" onclick="goToRoom('living')">
+      🛋️ Living Room
+    </button>
+    <button type="button" class="nav-pill" id="nav-kitchen" onclick="goToRoom('kitchen')">
+      🧁 Kitchen
+    </button>
+    <button type="button" class="sound-btn" id="soundToggle" onclick="toggleSound()" title="Toggle Doorbell Chimes">
+      🔔
+    </button>
+  </nav>
 
-    <!-- Horizontal Room Navigation Pill Bar (3 Tabs) -->
-    <nav class="top-nav" aria-label="Room navigation">
-      <button class="nav-pill active" data-room="yard" type="button">🏡 Front Yard</button>
-      <button class="nav-pill" data-room="living" type="button">🛋️ Living Room</button>
-      <button class="nav-pill" data-room="kitchen" type="button">🧁 Kitchen</button>
-    </nav>
+  <!-- =========================================================================
+       MAIN DOLLHOUSE STAGE
+       ========================================================================= -->
+  <main class="stage-wrapper">
 
-    <!-- ROOM 1: FRONT YARD -->
-    <main class="room-card active" id="room-yard">
-      <div class="card-header">
-        <!-- Circular PFP Slot: upload your file as pfp.jpg (or change filename below) -->
-        <div class="pfp-slot">
-          <img src="pfp.jpg" alt="Profile avatar" />
-        </div>
-        <div class="card-title-wrap">
-          <h2>Rosebud Pastel Cottage</h2>
+    <!-- ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
+         ROOM 1: THE PASTEL COTTAGE EXTERIOR (Front Yard) -> pfp1
+         ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~ -->
+    <section id="room-exterior" class="room-screen active">
+      <div class="room-header">
+        <img src="pfp1.jpg" alt="Front Yard PFP" class="pfp-avatar" id="pfp1" />
+        <div class="room-title-group">
+          <h1>Rosebud Pastel Cottage</h1>
           <p>Tap the pink front door to step inside our cozy home</p>
         </div>
       </div>
 
       <div class="scene-box">
-        <svg viewBox="0 0 360 360" class="scene-svg" aria-label="Rosebud Pastel Cottage Front Yard">
-          <defs>
-            <linearGradient id="skyGrad" x1="0" y1="0" x2="0" y2="1">
-              <stop offset="0%" stop-color="#eaf4fc" />
-              <stop offset="100%" stop-color="#f7fbff" />
-            </linearGradient>
-          </defs>
-          <rect width="360" height="250" fill="url(#skyGrad)" />
-          <rect y="245" width="360" height="115" fill="#e2f2dc" />
-
-          <!-- Clouds -->
-          <g fill="#ffffff" opacity="0.9">
-            <ellipse cx="75" cy="58" rx="34" ry="16" />
-            <ellipse cx="98" cy="54" rx="24" ry="14" />
-            <ellipse cx="285" cy="72" rx="36" ry="16" />
-            <ellipse cx="262" cy="68" rx="22" ry="13" />
-          </g>
-
-          <!-- Background Trees & White Fence -->
-          <g stroke="#6b565c" stroke-width="1.6">
-            <circle cx="52" cy="195" r="42" fill="#f7f9e4" />
-            <circle cx="308" cy="195" r="42" fill="#f7f9e4" />
-            <rect x="0" y="218" width="360" height="8" fill="#ffffff" />
-            <rect x="0" y="236" width="360" height="8" fill="#ffffff" />
-            <rect x="12" y="198" width="14" height="52" rx="4" fill="#ffffff" />
-            <rect x="34" y="198" width="14" height="52" rx="4" fill="#ffffff" />
-            <rect x="56" y="198" width="14" height="52" rx="4" fill="#ffffff" />
-            <rect x="290" y="198" width="14" height="52" rx="4" fill="#ffffff" />
-            <rect x="312" y="198" width="14" height="52" rx="4" fill="#ffffff" />
-            <rect x="334" y="198" width="14" height="52" rx="4" fill="#ffffff" />
-          </g>
-
-          <!-- Chimney & Snail Ornament -->
-          <g stroke="#6b565c" stroke-width="1.8">
-            <rect x="92" y="96" width="34" height="55" rx="3" fill="#fbe0e7" />
-            <rect x="88" y="90" width="42" height="10" rx="4" fill="#f6c4d2" />
-            <ellipse cx="86" cy="144" rx="14" ry="8" fill="#cde8be" />
-            <circle cx="91" cy="134" r="12" fill="#fff2cc" />
-            <path d="M91 134 c3 0 5 3 2 5 c-4 2 -7 -2 -5 -6 c2 -4 8 -4 10 0" fill="none" />
-          </g>
-
-          <!-- House Body & Roof -->
-          <g stroke="#6b565c" stroke-width="1.8" stroke-linejoin="round">
-            <polygon points="180,76 74,175 286,175" fill="#fbe0e7" />
-            <rect x="78" y="172" width="204" height="86" fill="#fbe0e7" />
-            <polygon points="180,66 60,176 70,186 180,84 290,186 300,176" fill="#f5b9cb" />
-          </g>
-
-          <!-- Attic Window -->
-          <g stroke="#6b565c" stroke-width="1.6">
-            <path d="M162,148 v-22 a18,18 0 0 1 36,0 v22 z" fill="#ffffff" />
-            <path d="M166,146 v-20 a14,14 0 0 1 28,0 v20 z" fill="#dff0fa" />
-            <line x1="180" y1="112" x2="180" y2="146" />
-            <line x1="166" y1="132" x2="194" y2="132" />
-            <rect x="155" y="148" width="50" height="9" rx="4.5" fill="#f5b9cb" />
-            <circle cx="166" cy="145" r="5" fill="#f79eb8" />
-            <circle cx="180" cy="145" r="5" fill="#ffe5a3" />
-            <circle cx="194" cy="145" r="5" fill="#f79eb8" />
-          </g>
-
-          <!-- Left & Right Windows -->
-          <g stroke="#6b565c" stroke-width="1.6">
-            <path d="M96,212 v-22 a16,16 0 0 1 32,0 v22 z" fill="#ffffff" />
-            <path d="M100,210 v-20 a12,12 0 0 1 24,0 v20 z" fill="#dff0fa" />
-            <line x1="112" y1="178" x2="112" y2="210" />
-            <line x1="100" y1="196" x2="124" y2="196" />
-            <rect x="90" y="212" width="44" height="8" rx="4" fill="#f5b9cb" />
-            <circle cx="101" cy="209" r="4.5" fill="#f79eb8" />
-            <circle cx="112" cy="209" r="4.5" fill="#ffe5a3" />
-            <circle cx="123" cy="209" r="4.5" fill="#f79eb8" />
-
-            <path d="M232,212 v-22 a16,16 0 0 1 32,0 v22 z" fill="#ffffff" />
-            <path d="M236,210 v-20 a12,12 0 0 1 24,0 v20 z" fill="#dff0fa" />
-            <line x1="248" y1="178" x2="248" y2="210" />
-            <line x1="236" y1="196" x2="260" y2="196" />
-            <rect x="226" y="212" width="44" height="8" rx="4" fill="#f5b9cb" />
-            <circle cx="237" cy="209" r="4.5" fill="#f79eb8" />
-            <circle cx="248" cy="209" r="4.5" fill="#ffe5a3" />
-            <circle cx="259" cy="209" r="4.5" fill="#f79eb8" />
-          </g>
-
-          <!-- Interactive Front Door -->
-          <g class="svg-hotspot" data-action="enter-house" stroke="#6b565c" stroke-width="1.8">
-            <path d="M148,258 v-56 a32,32 0 0 1 64,0 v56 z" fill="#ffffff" />
-            <path d="M154,196 a26,26 0 0 1 52,0 z" fill="#dff0fa" />
-            <rect x="154" y="198" width="52" height="60" fill="#f9cad8" />
-            <line x1="171" y1="198" x2="171" y2="258" stroke-width="1.2" />
-            <line x1="189" y1="198" x2="189" y2="258" stroke-width="1.2" />
-            <ellipse cx="162" cy="230" rx="3" ry="5" fill="#ffffff" />
-            <rect x="142" y="256" width="76" height="8" rx="4" fill="#f5b9cb" />
-          </g>
-
-          <!-- Stepping Stones -->
-          <g stroke="#6b565c" stroke-width="1.5">
-            <rect x="146" y="268" width="30" height="12" rx="6" fill="#ece8fb" />
-            <rect x="184" y="268" width="32" height="12" rx="6" fill="#ffe5b8" />
-            <rect x="136" y="284" width="36" height="14" rx="7" fill="#dff0fa" />
-            <rect x="180" y="284" width="38" height="14" rx="7" fill="#fbe0e7" />
-            <rect x="128" y="302" width="42" height="16" rx="8" fill="#fff7d6" />
-            <rect x="178" y="302" width="44" height="16" rx="8" fill="#dff0fa" />
-            <rect x="116" y="322" width="48" height="17" rx="8.5" fill="#fbe0e7" />
-            <rect x="172" y="322" width="50" height="17" rx="8.5" fill="#ffffff" />
-            <rect x="104" y="342" width="54" height="18" rx="9" fill="#dff0fa" />
-            <rect x="166" y="342" width="58" height="18" rx="9" fill="#ffe5b8" />
-          </g>
-
-          <!-- Garden Bushes -->
-          <g stroke="#6b565c" stroke-width="1.5">
-            <circle cx="56" cy="252" r="20" fill="#c7e6b5" />
-            <circle cx="82" cy="249" r="22" fill="#c7e6b5" />
-            <circle cx="110" cy="252" r="20" fill="#c7e6b5" />
-            <circle cx="62" cy="246" r="9" fill="#f69bb6" />
-            <circle cx="86" cy="242" r="10" fill="#ffe0a3" />
-            <circle cx="108" cy="247" r="9" fill="#f69bb6" />
-
-            <circle cx="250" cy="252" r="20" fill="#c7e6b5" />
-            <circle cx="278" cy="249" r="22" fill="#c7e6b5" />
-            <circle cx="306" cy="252" r="20" fill="#c7e6b5" />
-            <circle cx="252" cy="247" r="9" fill="#f69bb6" />
-            <circle cx="276" cy="242" r="10" fill="#ffe0a3" />
-            <circle cx="300" cy="246" r="9" fill="#f69bb6" />
-
-            <circle cx="42" cy="316" r="24" fill="#c7e6b5" />
-            <circle cx="64" cy="322" r="22" fill="#c7e6b5" />
-            <circle cx="48" cy="312" r="11" fill="#f69bb6" />
-            <circle cx="66" cy="316" r="10" fill="#f9cad8" />
-            <circle cx="54" cy="328" r="9" fill="#ffe0a3" />
-
-            <circle cx="318" cy="316" r="24" fill="#c7e6b5" />
-            <circle cx="296" cy="322" r="22" fill="#c7e6b5" />
-            <circle cx="312" cy="312" r="11" fill="#f69bb6" />
-            <circle cx="294" cy="316" r="10" fill="#ffe0a3" />
-            <circle cx="306" cy="328" r="9" fill="#f9cad8" />
-          </g>
-        </svg>
-
-        <button
-          class="hotspot-pill"
-          style="top: 58%; left: 53%"
-          data-action="enter-house"
-          type="button"
-        >
+        <!-- Floating Door Hint Chip -->
+        <button type="button" class="badge-chip" style="top: 56%; left: 50%; transform: translateX(-50%);" onclick="enterHouse()">
           🚪 Tap Door to Enter
         </button>
+
+        <!-- Hand-Crafted SVG: Pastel Pink Brick Cottage Exterior (Strictly Zero Cats) -->
+        <svg class="scene-svg" viewBox="0 0 420 460" xmlns="http://www.w3.org/2000/svg" role="img" aria-label="Pastel pink cottage exterior with flower boxes and stepping stone path">
+          <!-- Pastel Sky & Soft Clouds -->
+          <defs>
+            <linearGradient id="skyGrad" x1="0" y1="0" x2="0" y2="1">
+              <stop offset="0%" stop-color="#E6F4FF" />
+              <stop offset="65%" stop-color="#FFF5F8" />
+              <stop offset="100%" stop-color="#F1F8E9" />
+            </linearGradient>
+            <linearGradient id="lawnGrad" x1="0" y1="0" x2="0" y2="1">
+              <stop offset="0%" stop-color="#E8F5E9" />
+              <stop offset="100%" stop-color="#DCECCB" />
+            </linearGradient>
+          </defs>
+
+          <rect width="420" height="330" fill="url(#skyGrad)" />
+
+          <!-- Fluffy Pastel Clouds -->
+          <g fill="#FFFFFF" opacity="0.9">
+            <circle cx="65" cy="78" r="26" />
+            <circle cx="92" cy="72" r="32" />
+            <circle cx="122" cy="82" r="24" />
+            <rect x="52" y="78" width="82" height="24" rx="12" />
+
+            <circle cx="315" cy="95" r="24" />
+            <circle cx="344" cy="88" r="30" />
+            <circle cx="372" cy="98" r="22" />
+            <rect x="302" y="95" width="80" height="22" rx="11" />
+          </g>
+
+          <!-- Background Pastel Trees -->
+          <g stroke="#8E7B7F" stroke-width="1.5">
+            <circle cx="48" cy="245" r="44" fill="#F1F8E9" />
+            <circle cx="372" cy="245" r="44" fill="#FFF9E6" />
+          </g>
+
+          <!-- Lawn Ground -->
+          <rect y="315" width="420" height="145" fill="url(#lawnGrad)" />
+
+          <!-- White Picket Fence (Left & Right) -->
+          <g fill="#FFFFFF" stroke="#8E7B7F" stroke-width="1.6">
+            <rect x="0" y="275" width="95" height="8" />
+            <rect x="0" y="302" width="95" height="8" />
+            <path d="M12 320 V265 L20 257 L28 265 V320 Z" />
+            <path d="M38 320 V265 L46 257 L54 265 V320 Z" />
+            <path d="M64 320 V265 L72 257 L80 265 V320 Z" />
+
+            <rect x="325" y="275" width="95" height="8" />
+            <rect x="325" y="302" width="95" height="8" />
+            <path d="M340 320 V265 L348 257 L356 265 V320 Z" />
+            <path d="M366 320 V265 L374 257 L382 265 V320 Z" />
+            <path d="M392 320 V265 L400 257 L408 265 V320 Z" />
+          </g>
+
+          <!-- Chimney with Blooming Peach Rose -->
+          <g stroke="#7A5C61" stroke-width="1.8" stroke-linejoin="round">
+            <rect x="112" y="95" width="38" height="65" fill="#FCE4EC" />
+            <rect x="106" y="88" width="50" height="11" rx="4" fill="#F8BBD0" />
+            <line x1="112" y1="114" x2="150" y2="114" />
+            <line x1="112" y1="132" x2="150" y2="132" />
+            <ellipse cx="95" cy="148" rx="14" ry="8" transform="rotate(-25 95 148)" fill="#C5E1A5" />
+            <circle cx="105" cy="134" r="14" fill="#FFE0B2" />
+            <path d="M98 134 C98 127, 112 127, 112 134 C112 139, 102 140, 102 134" fill="none" stroke="#7A5C61" stroke-width="1.4" />
+          </g>
+
+          <!-- Cottage Main Pink Brick House Body -->
+          <g stroke="#7A5C61" stroke-width="1.8" stroke-linejoin="round">
+            <polygon points="88,185 210,76 332,185 332,320 88,320" fill="#FCE4EC" />
+            <g stroke="#F4B6C9" stroke-width="1.4">
+              <line x1="102" y1="205" x2="134" y2="205" />
+              <line x1="286" y1="205" x2="318" y2="205" />
+              <line x1="96" y1="235" x2="124" y2="235" />
+              <line x1="296" y1="235" x2="324" y2="235" />
+              <line x1="100" y1="285" x2="130" y2="285" />
+              <line x1="290" y1="285" x2="320" y2="285" />
+            </g>
+            <polygon points="68,195 210,66 352,195 342,205 210,85 78,205" fill="#F8BBD0" />
+            <circle cx="326" cy="196" r="11" fill="#F48FB1" />
+            <circle cx="326" cy="196" r="4" fill="#FFF9E6" />
+          </g>
+
+          <!-- Attic Arched Window + Flower Box -->
+          <g stroke="#7A5C61" stroke-width="1.7">
+            <path d="M188 168 V136 A22 22 0 0 1 232 136 V168 Z" fill="#FFFFFF" />
+            <path d="M193 165 V137 A17 17 0 0 1 227 137 V165 Z" fill="#DDF0FF" />
+            <line x1="210" y1="120" x2="210" y2="165" />
+            <line x1="193" y1="145" x2="227" y2="145" />
+            <rect x="180" y="168" width="60" height="11" rx="4" fill="#F8BBD0" />
+            <circle cx="192" cy="165" r="6" fill="#FFE0B2" />
+            <circle cx="204" cy="164" r="6.5" fill="#F48FB1" />
+            <circle cx="217" cy="164" r="6" fill="#FFF59D" />
+            <circle cx="229" cy="165" r="6" fill="#FFE0B2" />
+          </g>
+
+          <!-- Left Ground Window + Flower Box -->
+          <g stroke="#7A5C61" stroke-width="1.7">
+            <path d="M110 256 V222 A21 21 0 0 1 152 222 V256 Z" fill="#FFFFFF" />
+            <path d="M115 253 V223 A16 16 0 0 1 147 223 V253 Z" fill="#DDF0FF" />
+            <line x1="131" y1="207" x2="131" y2="253" />
+            <line x1="115" y1="232" x2="147" y2="232" />
+            <rect x="103" y="256" width="56" height="10" rx="4" fill="#F8BBD0" />
+            <circle cx="114" cy="253" r="5.5" fill="#F48FB1" />
+            <circle cx="126" cy="252" r="6" fill="#FFF59D" />
+            <circle cx="138" cy="252" r="5.5" fill="#FFE0B2" />
+            <circle cx="149" cy="253" r="5.5" fill="#F48FB1" />
+          </g>
+
+          <!-- Right Ground Window + Flower Box -->
+          <g stroke="#7A5C61" stroke-width="1.7">
+            <path d="M268 256 V222 A21 21 0 0 1 310 222 V256 Z" fill="#FFFFFF" />
+            <path d="M273 253 V223 A16 16 0 0 1 305 223 V253 Z" fill="#DDF0FF" />
+            <line x1="289" y1="207" x2="289" y2="253" />
+            <line x1="273" y1="232" x2="305" y2="232" />
+            <rect x="261" y="256" width="56" height="10" rx="4" fill="#F8BBD0" />
+            <circle cx="272" cy="253" r="5.5" fill="#FFF59D" />
+            <circle cx="284" cy="252" r="6" fill="#F48FB1" />
+            <circle cx="296" cy="252" r="5.5" fill="#FFE0B2" />
+            <circle cx="307" cy="253" r="5.5" fill="#F48FB1" />
+          </g>
+
+          <!-- INTERACTIVE ARCHED FRONT DOOR + STEPS -->
+          <g class="hotspot-group" onclick="enterHouse()" stroke="#7A5C61" stroke-width="1.8" stroke-linejoin="round">
+            <path d="M174 320 V236 A36 36 0 0 1 246 236 V320 Z" fill="#FFFFFF" />
+            <path d="M180 236 A30 30 0 0 1 240 236 Z" fill="#DDF0FF" />
+            <path d="M192 236 A18 18 0 0 1 228 236" fill="none" stroke="#7A5C61" stroke-width="1.6" />
+            <rect x="180" y="238" width="60" height="82" fill="#FCE4EC" />
+            <line x1="195" y1="242" x2="195" y2="316" stroke="#F4B6C9" stroke-width="1.4" />
+            <line x1="210" y1="242" x2="210" y2="316" stroke="#F4B6C9" stroke-width="1.4" />
+            <line x1="225" y1="242" x2="225" y2="316" stroke="#F4B6C9" stroke-width="1.4" />
+            <ellipse cx="189" cy="282" rx="3" ry="5.5" fill="#FFF9E6" />
+            <rect x="172" y="320" width="76" height="7" rx="3" fill="#FCE4EC" />
+            <rect x="166" y="327" width="88" height="8" rx="3" fill="#F8BBD0" />
+          </g>
+
+          <!-- Cobblestone Stepping-Stone Path -->
+          <g stroke="#9E8287" stroke-width="1.5">
+            <rect x="172" y="338" width="38" height="16" rx="8" fill="#FFF5F8" />
+            <rect x="214" y="339" width="34" height="15" rx="7" fill="#FFE0B2" />
+            <rect x="162" y="357" width="44" height="18" rx="9" fill="#E3F2FD" />
+            <rect x="210" y="358" width="46" height="17" rx="8" fill="#FCE4EC" />
+            <rect x="150" y="378" width="52" height="20" rx="10" fill="#FFF9E6" />
+            <rect x="206" y="380" width="54" height="19" rx="9" fill="#E3F2FD" />
+            <rect x="136" y="402" width="58" height="22" rx="11" fill="#FCE4EC" />
+            <rect x="198" y="404" width="62" height="21" rx="10" fill="#FFF5F8" />
+            <rect x="122" y="428" width="66" height="24" rx="12" fill="#E3F2FD" />
+            <rect x="194" y="429" width="70" height="24" rx="12" fill="#FFE0B2" />
+          </g>
+
+          <!-- Lush Rose Bushes Framing the Path -->
+          <g stroke="#7A5C61" stroke-width="1.6">
+            <circle cx="65" cy="316" r="24" fill="#C5E1A5" />
+            <circle cx="96" cy="314" r="26" fill="#AED581" />
+            <circle cx="128" cy="318" r="22" fill="#C5E1A5" />
+            <circle cx="72" cy="306" r="12" fill="#F48FB1" />
+            <circle cx="102" cy="302" r="13" fill="#FFE0B2" />
+            <circle cx="126" cy="312" r="10" fill="#F8BBD0" />
+
+            <circle cx="292" cy="318" r="22" fill="#C5E1A5" />
+            <circle cx="324" cy="314" r="26" fill="#AED581" />
+            <circle cx="356" cy="316" r="24" fill="#C5E1A5" />
+            <circle cx="296" cy="310" r="11" fill="#F8BBD0" />
+            <circle cx="325" cy="303" r="13" fill="#FFE0B2" />
+            <circle cx="352" cy="305" r="12" fill="#F48FB1" />
+
+            <circle cx="38" cy="405" r="32" fill="#AED581" />
+            <circle cx="74" cy="416" r="28" fill="#C5E1A5" />
+            <circle cx="42" cy="394" r="16" fill="#F48FB1" />
+            <circle cx="72" cy="404" r="14" fill="#F8BBD0" />
+            <circle cx="52" cy="422" r="13" fill="#FFE0B2" />
+
+            <circle cx="382" cy="405" r="32" fill="#AED581" />
+            <circle cx="346" cy="416" r="28" fill="#C5E1A5" />
+            <circle cx="378" cy="394" r="16" fill="#F48FB1" />
+            <circle cx="348" cy="404" r="14" fill="#FFE0B2" />
+            <circle cx="368" cy="422" r="13" fill="#F8BBD0" />
+          </g>
+        </svg>
       </div>
 
-      <div class="card-footer">
-        <span class="step-label">🌸 Step 1 of 3 · Welcome Home</span>
-        <button class="btn-primary" data-action="enter-house" type="button">
+      <div class="room-footer">
+        <span style="font-size: 12px; color: var(--ink-muted); font-weight: 600;">
+          🌸 Step 1 of 3 · Welcome Home
+        </span>
+        <button type="button" class="btn-primary" onclick="enterHouse()">
           Enter House →
         </button>
       </div>
-    </main>
-        <!-- ROOM 2: LIVING ROOM (Clean artwork + 3 local photo file slots) -->
-    <section class="room-card" id="room-living">
-      <div class="card-header">
-        <div class="pfp-slot">
-          <img src="pfp.jpg" alt="Profile avatar" />
-        </div>
-        <div class="card-title-wrap">
-          <h2>Cozy Pastel Living Room</h2>
-          <p>Tap the gallery frames, scrapbook bags, or tea set</p>
+  </section>
+        <!-- ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
+         ROOM 2: THE LIVING ROOM -> pfp2 + 4 wall hanging pics (pic1..pic4)
+         ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~ -->
+    <section id="room-living" class="room-screen">
+      <div class="room-header">
+        <img src="pfp2.jpg" alt="Living Room PFP" class="pfp-avatar" id="pfp2" />
+        <div class="room-title-group">
+          <h1>Cozy Pastel Living Room</h1>
+          <p>Tap the gallery frames, open scrapbook diary, or tea set</p>
         </div>
       </div>
 
       <div class="scene-box">
-        <svg viewBox="0 0 360 360" class="scene-svg" aria-label="Cozy Pastel Living Room">
-          <rect width="360" height="232" fill="#fdf1f5" />
-          <rect y="232" width="360" height="128" fill="#fbdbe5" />
+        <!-- Interactive Floating Chips -->
+        <button type="button" class="badge-chip" style="top: 13%; left: 26%;" onclick="openMemoriesModal()">
+          🖼️ Memory Wall
+        </button>
+        <button type="button" class="badge-chip" style="top: 66%; left: 16%;" onclick="openDiaryModal()">
+          📖 Scrapbook Diary
+        </button>
+        <button type="button" class="badge-chip" style="top: 66%; right: 16%;" onclick="openTeaKeepsakeModal()">
+          🫖 Tea &amp; Keepsakes
+        </button>
 
-          <!-- Subtle Wallpaper Dots -->
-          <g fill="#f6c4d2" opacity="0.55">
-            <circle cx="45" cy="95" r="5" />
-            <circle cx="315" cy="155" r="5" />
-            <circle cx="95" cy="40" r="4" />
-            <circle cx="255" cy="48" r="4" />
+        <!-- 4 Wall Hanging Photo Slots (pic1, pic2, pic3, pic4) -->
+        <div class="wall-pic-slot pic-slot-1" onclick="openMemoriesModal()" title="Wall Pic 1">
+          <img src="pic1.jpg" alt="Wall pic 1" id="pic1" />
+        </div>
+        <div class="wall-pic-slot pic-slot-2" onclick="openMemoriesModal()" title="Wall Pic 2">
+          <img src="pic2.jpg" alt="Wall pic 2" id="pic2" />
+        </div>
+        <div class="wall-pic-slot pic-slot-3" onclick="openMemoriesModal()" title="Wall Pic 3">
+          <img src="pic3.jpg" alt="Wall pic 3" id="pic3" />
+        </div>
+        <div class="wall-pic-slot pic-slot-4" onclick="openMemoriesModal()" title="Wall Pic 4">
+          <img src="pic4.jpg" alt="Wall pic 4" id="pic4" />
+        </div>
+
+        <!-- Hand-Crafted SVG: Pastel Living Room -->
+        <svg class="scene-svg" viewBox="0 0 420 460" xmlns="http://www.w3.org/2000/svg" role="img" aria-label="Pastel living room with gallery wall, lavender sofa with cushions, and coffee table">
+          <rect width="420" height="295" fill="#FFF0F5" />
+          <rect y="287" width="420" height="8" fill="#FFFFFF" />
+          <rect y="295" width="420" height="165" fill="#FAD2E1" />
+
+          <g fill="#F8BBD0" opacity="0.55">
+            <circle cx="52" cy="54" r="7" />
+            <circle cx="368" cy="60" r="7" />
+            <circle cx="48" cy="165" r="6" />
+            <circle cx="372" cy="175" r="6" />
+            <circle cx="145" cy="46" r="5" />
+            <circle cx="275" cy="48" r="5" />
           </g>
 
-          <!-- Chandelier -->
-          <g stroke="#6b565c" stroke-width="1.6">
-            <line x1="180" y1="0" x2="180" y2="28" />
-            <path d="M122,42 Q180,68 238,42" fill="none" stroke="#e8a4b8" stroke-width="2.5" />
-            <polygon points="116,42 128,42 133,58 111,58" fill="#fff9e2" />
-            <polygon points="174,42 186,42 191,58 169,58" fill="#fff9e2" />
-            <polygon points="232,42 244,42 249,58 227,58" fill="#fff9e2" />
-            <path d="M180,30 c-8,-8 -18,2 -6,8 c12,-6 2,-16 -6,-8" fill="#f79eb8" />
+          <!-- Pink Ribbon Chandelier -->
+          <g stroke="#8A646B" stroke-width="1.6" stroke-linejoin="round">
+            <line x1="210" y1="0" x2="210" y2="38" stroke="#F48FB1" stroke-width="3" />
+            <path d="M210 34 C194 20, 184 36, 210 40 C236 36, 226 20, 210 34 Z" fill="#F8BBD0" />
+            <path d="M142 66 Q175 82 210 46 Q245 82 278 66" fill="none" stroke="#F48FB1" stroke-width="3" />
+            <polygon points="130,66 154,66 149,44 135,44" fill="#FFF9E6" />
+            <polygon points="198,62 222,62 217,40 203,40" fill="#FFF9E6" />
+            <polygon points="266,66 290,66 285,44 271,44" fill="#FFF9E6" />
           </g>
 
-          <!-- Wall Clock -->
-          <g stroke="#6b565c" stroke-width="1.6">
-            <circle cx="282" cy="68" r="20" fill="#fff4bd" />
-            <circle cx="282" cy="68" r="15" fill="#ffffff" />
-            <polyline points="282,58 282,68 290,72" fill="none" stroke-linecap="round" />
+          <!-- Yellow Wall Clock -->
+          <g stroke="#8A646B" stroke-width="1.6">
+            <circle cx="335" cy="84" r="24" fill="#FFF59D" />
+            <circle cx="335" cy="84" r="19" fill="#FFFDE7" />
+            <line x1="335" y1="84" x2="335" y2="71" stroke-linecap="round" />
+            <line x1="335" y1="84" x2="346" y2="88" stroke-linecap="round" />
           </g>
 
-          <!-- Floor Lamp -->
-          <g stroke="#6b565c" stroke-width="1.6">
-            <line x1="326" y1="138" x2="326" y2="275" />
-            <ellipse cx="326" cy="275" rx="18" ry="5" fill="#ffffff" />
-            <polygon points="310,96 342,96 352,138 300,138" fill="#fff3b0" />
+          <!-- Frame Borders Behind Wall Pic Slots -->
+          <g class="hotspot-group" onclick="openMemoriesModal()" stroke="#8A646B" stroke-width="1.7">
+            <rect x="86" y="92" width="60" height="44" rx="4" fill="#FFFFFF" />
+            <rect x="114" y="144" width="44" height="54" rx="4" fill="#FFFFFF" />
+            <rect x="172" y="106" width="76" height="82" rx="5" fill="#FFFFFF" />
+            <rect x="262" y="148" width="54" height="38" rx="4" fill="#FFFFFF" />
           </g>
 
-          <!-- Pastel Sofa & Cushions -->
-          <g stroke="#6b565c" stroke-width="1.6">
-            <path d="M62,235 v-28 c0,-26 236,-26 236,0 v28 z" fill="#d9e4fc" />
-            <rect x="46" y="218" width="22" height="44" rx="10" fill="#f5c69c" />
-            <rect x="292" y="218" width="22" height="44" rx="10" fill="#f5c69c" />
-            <rect x="64" y="232" width="232" height="24" rx="8" fill="#eef3ff" />
-            <path
-              d="M98,212 c-8,-12 -22,-2 -12,10 l12,12 l12,-12 c10,-12 -4,-22 -12,-10 z"
-              fill="#f7a8c2"
-            />
-            <polygon
-              points="158,198 163,209 175,210 166,218 169,230 158,223 147,230 150,218 141,210 153,209"
-              fill="#fff9d6"
-            />
-            <rect x="190" y="196" width="46" height="42" rx="10" fill="#fff099" />
-            <polygon points="262,196 242,226 282,226" fill="#cde8be" />
+          <!-- Standing Yellow Floor Lamp -->
+          <g stroke="#8A646B" stroke-width="1.6">
+            <line x1="392" y1="158" x2="392" y2="314" stroke="#D7B38C" stroke-width="4" />
+            <ellipse cx="392" cy="315" rx="18" ry="5" fill="#FFF9E6" />
+            <polygon points="354,158 420,158 410,112 372,112" fill="#FFF59D" />
           </g>
 
-          <!-- Interactive Gift Bags (Scrapbook Diary) -->
-          <g class="svg-hotspot" data-modal="diary" stroke="#6b565c" stroke-width="1.6">
-            <rect x="22" y="230" width="42" height="52" rx="3" fill="#e6ecfc" />
-            <rect x="38" y="242" width="48" height="58" rx="3" fill="#ffffff" />
+          <!-- Potted Indoor Plant -->
+          <g stroke="#8A646B" stroke-width="1.5">
+            <ellipse cx="26" cy="242" rx="16" ry="7" transform="rotate(-30 26 242)" fill="#B2DFDB" />
+            <ellipse cx="42" cy="232" rx="16" ry="7" transform="rotate(-65 42 232)" fill="#C8E6C9" />
+            <ellipse cx="52" cy="252" rx="15" ry="6" transform="rotate(-15 52 252)" fill="#B2DFDB" />
           </g>
 
-          <!-- Coffee Table & Interactive Tea Set -->
-          <g stroke="#6b565c" stroke-width="1.6">
-            <rect x="52" y="294" width="256" height="12" rx="4" fill="#f7b7cb" />
-            <rect x="64" y="306" width="12" height="46" fill="#ffffff" />
-            <rect x="284" y="306" width="12" height="46" fill="#ffffff" />
-            <polygon points="94,294 118,290 144,294 120,298" fill="#ffffff" />
+          <!-- Lavender Tufted Sofa & Cushions -->
+          <g stroke="#8A646B" stroke-width="1.8" stroke-linejoin="round">
+            <rect x="64" y="308" width="7" height="28" rx="3" fill="#F3C184" />
+            <rect x="349" y="308" width="7" height="28" rx="3" fill="#F3C184" />
+            <path d="M72 265 C72 212, 348 212, 348 265 Z" fill="#DCE2FF" />
+            <circle cx="145" cy="244" r="3.5" fill="#F8BBD0" />
+            <circle cx="210" cy="242" r="3.5" fill="#F8BBD0" />
+            <circle cx="275" cy="244" r="3.5" fill="#F8BBD0" />
+            <rect x="68" y="265" width="284" height="44" rx="16" fill="#E8ECFF" />
+            <line x1="162" y1="265" x2="162" y2="309" stroke="#B6C0F0" stroke-width="1.4" />
+            <line x1="258" y1="265" x2="258" y2="309" stroke="#B6C0F0" stroke-width="1.4" />
+            <path d="M52 292 C52 266, 74 260, 78 274 L74 306 L52 306 Z" fill="#F5CFA0" />
+            <path d="M368 292 C368 266, 346 260, 342 274 L346 306 L368 306 Z" fill="#F5CFA0" />
+            <path d="M116 286 C96 270, 84 252, 98 244 C107 239, 114 246, 116 251 C118 246, 125 239, 134 244 C148 252, 136 270, 116 286 Z" fill="#F8BBD0" />
+            <polygon points="186,246 192,258 205,260 195,269 198,282 186,275 174,282 177,269 167,260 180,258" fill="#FFF9E6" />
+            <rect x="218" y="238" width="58" height="52" rx="10" transform="rotate(-4 218 238)" fill="#FFF59D" />
+            <line x1="230" y1="240" x2="227" y2="288" stroke="#FBC02D" stroke-width="2" />
+            <line x1="242" y1="239" x2="239" y2="287" stroke="#FBC02D" stroke-width="2" />
+            <line x1="254" y1="238" x2="251" y2="286" stroke="#FBC02D" stroke-width="2" />
+            <line x1="266" y1="238" x2="263" y2="286" stroke="#FBC02D" stroke-width="2" />
+            <polygon points="306,230 284,258 294,258 278,282 334,282 318,258 328,258" fill="#DCEDC8" />
+          </g>
 
-            <g class="svg-hotspot" data-modal="tea">
-              <ellipse cx="182" cy="292" rx="14" ry="4" fill="#ffffff" />
-              <circle cx="178" cy="290" r="4" fill="#cde8be" />
-              <circle cx="186" cy="290" r="4" fill="#f79eb8" />
-              <ellipse cx="212" cy="286" rx="14" ry="10" fill="#f7a8c2" />
-              <path d="M198,286 l-8,-6 l2,8 z" fill="#f7a8c2" />
-              <path d="M226,282 c7,0 7,10 0,10" fill="none" />
-              <rect x="236" y="284" width="12" height="10" rx="3" fill="#ffffff" />
+          <!-- Pastel Shopping Gift Bags -->
+          <g class="hotspot-group" onclick="openTeaKeepsakeModal()" stroke="#8A646B" stroke-width="1.6" stroke-linejoin="round">
+            <rect x="26" y="284" width="44" height="54" rx="4" fill="#E8ECFF" />
+            <path d="M38 284 C38 270, 58 270, 58 284" fill="none" />
+            <rect x="44" y="294" width="56" height="64" rx="5" fill="#FFFDF9" />
+            <rect x="50" y="300" width="44" height="52" fill="#FCE4EC" stroke="none" />
+            <path d="M60 294 C60 276, 84 276, 84 294" fill="none" stroke-width="2" />
+            <path d="M72 312 L63 307 L63 317 Z M72 312 L81 307 L81 317 Z" fill="#F8BBD0" />
+          </g>
+
+          <!-- Pink-Topped Coffee Table -->
+          <g stroke="#8A646B" stroke-width="1.7" stroke-linejoin="round">
+            <rect x="66" y="376" width="8" height="68" rx="3" fill="#FFFFFF" />
+            <rect x="84" y="376" width="7" height="56" rx="3" fill="#F5F5F5" />
+            <rect x="346" y="376" width="8" height="68" rx="3" fill="#FFFFFF" />
+            <rect x="329" y="376" width="7" height="56" rx="3" fill="#F5F5F5" />
+            <rect x="58" y="368" width="304" height="10" rx="3" fill="#FFFFFF" />
+            <polygon points="68,354 352,354 364,368 56,368" fill="#F8BBD0" />
+          </g>
+
+          <!-- Open Memory Scrapbook Diary -->
+          <g class="hotspot-group" onclick="openDiaryModal()" stroke="#8A646B" stroke-width="1.5" stroke-linejoin="round">
+            <polygon points="104,358 134,352 136,363 106,366" fill="#FFF9E6" />
+            <polygon points="134,352 164,358 162,366 136,363" fill="#FFFFFF" />
+            <line x1="112" y1="358" x2="128" y2="356" stroke="#F48FB1" />
+            <line x1="142" y1="356" x2="156" y2="359" stroke="#F48FB1" />
+          </g>
+
+          <!-- Pastel Teapot, Teacup & Macarons -->
+          <g class="hotspot-group" onclick="openTeaKeepsakeModal()" stroke="#8A646B" stroke-width="1.5" stroke-linejoin="round">
+            <ellipse cx="206" cy="361" rx="16" ry="5" fill="#FFFFFF" />
+            <ellipse cx="201" cy="359" rx="5" ry="3" fill="#DCEDC8" />
+            <ellipse cx="211" cy="359" rx="5" ry="3" fill="#F8BBD0" />
+            <ellipse cx="242" cy="354" rx="14" ry="11" fill="#F8BBD0" />
+            <path d="M228 354 L218 348 L220 356 L228 358" fill="#F8BBD0" />
+            <path d="M256 348 C264 348, 264 360, 255 360" fill="none" stroke-width="2" />
+            <circle cx="242" cy="342" r="3" fill="#FFF9E6" />
+            <rect x="272" y="352" width="14" height="12" rx="4" fill="#FCE4EC" />
+            <path d="M286 355 C291 355, 291 361, 286 361" fill="none" />
+          </g>
+        </svg>
+      </div>
+
+      <div class="room-footer">
+        <button type="button" class="btn-secondary" onclick="goToRoom('exterior')">
+          ← Front Yard
+        </button>
+        <button type="button" class="btn-primary" onclick="goToRoom('kitchen')">
+          Go to Kitchen →
+        </button>
+      </div>
+    </section>
+          <!-- ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
+         ROOM 3: THE PASTEL KITCHEN -> pfp3
+         ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~ -->
+    <section id="room-kitchen" class="room-screen">
+      <div class="room-header">
+        <img src="pfp3.jpg" alt="Kitchen PFP" class="pfp-avatar" id="pfp3" />
+        <div class="room-title-group">
+          <h1>Pastel Gingham Kitchen</h1>
+          <p>Tap the polka-dot Dutch oven, oven door, or jam jars to read</p>
+        </div>
+      </div>
+
+      <div class="scene-box">
+        <!-- Interactive Floating Chips -->
+        <button type="button" class="badge-chip" style="top: 16%; right: 14%;" onclick="openSnacksModal()">
+          🍓 Snacks &amp; Treats
+        </button>
+        <button type="button" class="badge-chip" style="top: 52%; left: 10%;" onclick="openRecipesModal()">
+          🍲 Baking Recipes
+        </button>
+        <button type="button" class="badge-chip" style="top: 52%; left: 44%;" onclick="openSnacksModal()">
+          🍯 Jam &amp; Honey
+        </button>
+
+        <!-- Hand-Crafted SVG: Pastel White-Tile & Gingham Kitchen -->
+        <svg class="scene-svg" viewBox="0 0 420 460" xmlns="http://www.w3.org/2000/svg" role="img" aria-label="Pastel gingham kitchen with floating shelves, hanging utensils, polka-dot pot, and pink oven">
+          <rect width="420" height="295" fill="#FFFDFD" />
+          <g stroke="#F3E5E9" stroke-width="1.4">
+            <line x1="0" y1="32" x2="420" y2="32" />
+            <line x1="0" y1="64" x2="420" y2="64" />
+            <line x1="0" y1="96" x2="420" y2="96" />
+            <line x1="0" y1="128" x2="420" y2="128" />
+            <line x1="0" y1="160" x2="420" y2="160" />
+            <line x1="0" y1="192" x2="420" y2="192" />
+            <line x1="0" y1="224" x2="420" y2="224" />
+            <line x1="0" y1="256" x2="420" y2="256" />
+            <line x1="60" y1="0" x2="60" y2="32" /><line x1="150" y1="0" x2="150" y2="32" /><line x1="240" y1="0" x2="240" y2="32" /><line x1="330" y1="0" x2="330" y2="32" />
+            <line x1="105" y1="32" x2="105" y2="64" /><line x1="195" y1="32" x2="195" y2="64" /><line x1="285" y1="32" x2="285" y2="64" /><line x1="375" y1="32" x2="375" y2="64" />
+            <line x1="60" y1="64" x2="60" y2="96" /><line x1="150" y1="64" x2="150" y2="96" /><line x1="240" y1="64" x2="240" y2="96" /><line x1="330" y1="64" x2="330" y2="96" />
+            <line x1="105" y1="160" x2="105" y2="192" /><line x1="195" y1="160" x2="195" y2="192" /><line x1="285" y1="160" x2="285" y2="192" /><line x1="375" y1="160" x2="375" y2="192" />
+          </g>
+
+          <rect y="295" width="420" height="165" fill="#FFF9F2" />
+
+          <!-- Top Floating Shelf -->
+          <g stroke="#7A5C61" stroke-width="1.7" stroke-linejoin="round">
+            <rect x="86" y="64" width="334" height="11" rx="3" fill="#F2D7C2" />
+            <ellipse cx="128" cy="52" rx="18" ry="13" fill="#F8BBD0" />
+            <path d="M116 42 C116 28, 140 28, 140 42" fill="none" stroke="#F3C184" stroke-width="3.5" />
+            <polygon points="110,50 100,42 104,56" fill="#F8BBD0" />
+            <circle cx="128" cy="53" r="4" fill="#FFF9E6" stroke="none" />
+            <ellipse cx="204" cy="58" rx="36" ry="7" fill="#FFFFFF" />
+            <ellipse cx="204" cy="50" rx="35" ry="7" fill="#FFFFFF" />
+            <ellipse cx="204" cy="42" rx="34" ry="7" fill="#FFFFFF" />
+            <circle cx="190" cy="42" r="2.2" fill="#F48FB1" stroke="none" />
+            <circle cx="204" cy="43" r="2.2" fill="#F48FB1" stroke="none" />
+            <circle cx="218" cy="42" r="2.2" fill="#F48FB1" stroke="none" />
+            <ellipse cx="294" cy="58" rx="34" ry="7" fill="#DCE2FF" />
+            <ellipse cx="294" cy="50" rx="33" ry="7" fill="#E8ECFF" />
+            <ellipse cx="294" cy="42" rx="32" ry="7" fill="#FFFFFF" />
+            <rect x="352" y="42" width="34" height="22" rx="8" fill="#E1BEE7" />
+            <rect x="380" y="50" width="22" height="8" rx="4" fill="#E1BEE7" />
+          </g>
+
+          <!-- Second Floating Shelf -->
+          <g stroke="#7A5C61" stroke-width="1.7" stroke-linejoin="round">
+            <rect x="86" y="138" width="334" height="11" rx="3" fill="#F2D7C2" />
+            <rect x="112" y="106" width="26" height="32" rx="5" fill="#E8ECFF" />
+            <ellipse cx="118" cy="92" rx="4" ry="7" fill="#FFFDF9" />
+            <line x1="118" y1="99" x2="118" y2="106" />
+            <ellipse cx="131" cy="90" rx="4" ry="7" fill="#FFFDF9" />
+            <line x1="131" y1="97" x2="131" y2="106" />
+            <rect x="150" y="102" width="32" height="36" rx="8" fill="#FFFFFF" />
+            <rect x="154" y="96" width="24" height="6" rx="2" fill="#FCE4EC" />
+            <rect x="164" y="80" width="5" height="24" rx="2" fill="#F48FB1" />
+            <circle cx="161" cy="118" r="3.5" fill="#F48FB1" stroke="none" />
+            <circle cx="172" cy="126" r="3.5" fill="#F48FB1" stroke="none" />
+            <path d="M196 112 H252 C252 132, 240 138, 224 138 C208 138, 196 132, 196 112 Z" fill="#F8BBD0" />
+            <circle cx="212" cy="125" r="4" fill="#FFFFFF" stroke="none" />
+            <circle cx="236" cy="125" r="4" fill="#FFFFFF" stroke="none" />
+            <rect x="272" y="124" width="44" height="7" rx="3" fill="#FFF59D" />
+            <rect x="272" y="131" width="44" height="6" rx="3" fill="#E0E0E0" />
+            <path d="M332 114 H368 C368 132, 358 138, 350 138 C342 138, 332 132, 332 114 Z" fill="#FFF9E6" />
+            <path d="M356 114 H396 C396 132, 386 138, 376 138 C366 138, 356 132, 356 114 Z" fill="#FFFDE7" />
+          </g>
+
+          <!-- Hanging Utensil Rail -->
+          <g stroke="#7A5C61" stroke-width="1.6" stroke-linejoin="round">
+            <line x1="184" y1="168" x2="324" y2="168" stroke="#9E9E9E" stroke-width="3" stroke-linecap="round" />
+            <rect x="190" y="174" width="26" height="34" rx="10" transform="rotate(-18 190 174)" fill="#FFCCBC" />
+            <rect x="234" y="174" width="6" height="26" rx="2" fill="#F3C184" />
+            <rect x="226" y="200" width="22" height="28" rx="6" fill="#F8BBD0" />
+            <rect x="270" y="174" width="6" height="26" rx="2" fill="#FFF59D" />
+            <polygon points="264,200 282,200 284,228 262,228" fill="#FFF59D" />
+            <path d="M308 174 V216 C308 228, 292 228, 292 218 C292 212, 304 212, 304 216" fill="#F8BBD0" />
+          </g>
+
+          <!-- Lower Countertop & Cabinets -->
+          <g stroke="#7A5C61" stroke-width="1.8" stroke-linejoin="round">
+            <rect x="24" y="284" width="386" height="128" rx="10" fill="#FFFDF9" />
+            <polygon points="24,264 410,264 416,286 16,286" fill="#F8BBD0" />
+
+            <!-- Polka-Dot Dutch Oven Pot -->
+            <g class="hotspot-group" onclick="openRecipesModal()">
+              <rect x="44" y="268" width="84" height="12" rx="4" fill="#E1BEE7" />
+              <rect x="42" y="242" width="12" height="7" rx="3" fill="#F8BBD0" />
+              <rect x="122" y="242" width="12" height="7" rx="3" fill="#F8BBD0" />
+              <path d="M52 240 H124 V262 C124 272, 112 276, 88 276 C64 276, 52 272, 52 262 Z" fill="#FFFFFF" />
+              <circle cx="66" cy="254" r="4" fill="#F8BBD0" stroke="none" />
+              <circle cx="88" cy="256" r="4" fill="#F8BBD0" stroke="none" />
+              <circle cx="110" cy="254" r="4" fill="#F8BBD0" stroke="none" />
+              <path d="M50 240 C50 222, 126 222, 126 240 Z" fill="#FFFFFF" />
+              <path d="M88 224 C81 217, 78 210, 83 207 C86 205, 88 208, 88 210 C88 208, 90 205, 93 207 C98 210, 95 217, 88 224 Z" fill="#F48FB1" />
+            </g>
+
+            <!-- Jam & Honey Jars -->
+            <g class="hotspot-group" onclick="openSnacksModal()">
+              <rect x="148" y="266" width="104" height="12" rx="5" fill="#F3C184" />
+              <rect x="156" y="232" width="34" height="36" rx="8" fill="#FFF9E6" />
+              <rect x="160" y="226" width="26" height="7" rx="3" fill="#FFFFFF" />
+              <rect x="160" y="242" width="26" height="20" rx="4" fill="#FFF59D" stroke="none" />
+              <rect x="176" y="238" width="38" height="36" rx="9" fill="#FFFFFF" />
+              <rect x="180" y="230" width="30" height="8" rx="3" fill="#F48FB1" />
+              <rect x="180" y="248" width="30" height="18" rx="4" fill="#FCE4EC" stroke="none" />
+              <circle cx="195" cy="257" r="5" fill="#F48FB1" stroke="none" />
+            </g>
+
+            <!-- Sink & Faucet -->
+            <polygon points="286,268 402,268 408,282 280,282" fill="#F48FB1" />
+            <path d="M352 268 V226 C352 214, 332 214, 332 228" fill="none" stroke="#F48FB1" stroke-width="5" stroke-linecap="round" />
+            <circle cx="352" cy="256" r="7" fill="#F8BBD0" />
+
+            <!-- Built-In Baking Oven -->
+            <g class="hotspot-group" onclick="openRecipesModal()">
+              <rect x="44" y="304" width="144" height="92" rx="10" fill="#F8BBD0" />
+              <rect x="54" y="316" width="102" height="68" rx="6" fill="#FCE4EC" />
+              <line x1="64" y1="332" x2="146" y2="332" stroke="#FFE082" stroke-width="3" stroke-linecap="round" />
+              <line x1="64" y1="344" x2="146" y2="344" stroke="#FFE082" stroke-width="3" stroke-linecap="round" />
+              <line x1="60" y1="370" x2="150" y2="370" stroke="#BC8F97" stroke-width="2" />
+              <rect x="66" y="310" width="78" height="6" rx="3" fill="#FFFFFF" />
+              <circle cx="172" cy="332" r="8" fill="#FFFFFF" />
+              <circle cx="172" cy="364" r="8" fill="#FFFFFF" />
+            </g>
+
+            <!-- Gingham Cabinet Doors -->
+            <g>
+              <rect x="220" y="304" width="84" height="92" rx="8" fill="#FFCCBC" />
+              <rect x="308" y="304" width="84" height="92" rx="8" fill="#FFCCBC" />
+              <g fill="#FFFFFF" opacity="0.55" stroke="none">
+                <rect x="234" y="306" width="12" height="88" />
+                <rect x="260" y="306" width="12" height="88" />
+                <rect x="286" y="306" width="12" height="88" />
+                <rect x="222" y="322" width="80" height="12" />
+                <rect x="222" y="350" width="80" height="12" />
+                <rect x="222" y="378" width="80" height="12" />
+                <rect x="322" y="306" width="12" height="88" />
+                <rect x="348" y="306" width="12" height="88" />
+                <rect x="374" y="306" width="12" height="88" />
+                <rect x="310" y="322" width="80" height="12" />
+                <rect x="310" y="350" width="80" height="12" />
+                <rect x="310" y="378" width="80" height="12" />
+              </g>
+              <circle cx="292" cy="322" r="4" fill="#F3C184" />
+              <circle cx="320" cy="322" r="4" fill="#F3C184" />
             </g>
           </g>
         </svg>
-
-        <!-- 3 Local Photo File Slots (upload pic1.jpg, pic2.jpg, pic3.jpg to your folder) -->
-        <div class="gallery-photo-slot frame-1" data-modal="memory" title="Gallery Photo 1">
-          <img src="pic1.jpg" alt="Memory photo 1" />
-        </div>
-
-        <div class="gallery-photo-slot frame-2" data-modal="memory" title="Gallery Photo 2">
-          <img src="pic2.jpg" alt="Memory photo 2" />
-        </div>
-
-        <div class="gallery-photo-slot frame-3" data-modal="memory" title="Gallery Photo 3">
-          <img src="pic3.jpg" alt="Memory photo 3" />
-        </div>
       </div>
 
-      <div class="card-footer">
-        <button class="btn-soft" data-room="yard" type="button">← Front Yard</button>
-        <button class="btn-primary" data-room="kitchen" type="button">Go to Kitchen →</button>
+      <div class="room-footer">
+        <button type="button" class="btn-secondary" onclick="goToRoom('living')">
+          ← Back to Living Room
+        </button>
+        <div style="display: flex; gap: 8px;">
+          <button type="button" class="btn-secondary" onclick="openSnacksModal()">
+            🍓 Snacks
+          </button>
+          <button type="button" class="btn-primary" onclick="openRecipesModal()">
+            🧁 Baking Recipes
+          </button>
+        </div>
       </div>
     </section>
 
-        <!-- ROOM 3: KITCHEN (Clean illustration without floating pills; items remain clickable) -->
-    <section class="room-card" id="room-kitchen">
-      <div class="card-header">
-        <div class="pfp-slot">
-          <img src="pfp.jpg" alt="Profile avatar" />
-        </div>
-        <div class="card-title-wrap">
-          <h2>Pastel Gingham Kitchen</h2>
-          <p>Tap the Dutch oven, jam jars, or upper shelves to read</p>
-        </div>
+  </main>
+
+  <!-- =========================================================================
+       MODALS (MEMORIES, SCRAPBOOK DIARY, TEA & KEEPSAKES, RECIPES, SNACKS)
+       ========================================================================= -->
+
+  <div id="memoriesModal" class="modal-backdrop" onclick="backdropClose(event, 'memoriesModal')">
+    <div class="modal-card">
+      <div class="modal-top">
+        <h2>🖼️ Living Room Memory Wall</h2>
+        <button type="button" class="close-btn" onclick="closeModal('memoriesModal')">✕</button>
       </div>
-
-      <div class="scene-box">
-        <svg viewBox="0 0 360 360" class="scene-svg" aria-label="Pastel Gingham Kitchen">
-          <rect width="360" height="270" fill="#fcfcfc" />
-          <g stroke="#efefef" stroke-width="1.2">
-            <line x1="0" y1="36" x2="360" y2="36" />
-            <line x1="0" y1="72" x2="360" y2="72" />
-            <line x1="0" y1="108" x2="360" y2="108" />
-            <line x1="0" y1="144" x2="360" y2="144" />
-            <line x1="0" y1="180" x2="360" y2="180" />
-            <line x1="90" y1="0" x2="90" y2="36" />
-            <line x1="210" y1="0" x2="210" y2="36" />
-            <line x1="150" y1="36" x2="150" y2="72" />
-            <line x1="270" y1="36" x2="270" y2="72" />
-          </g>
-          <rect y="270" width="360" height="90" fill="#faf6ee" />
-
-          <!-- Top Shelf -->
-          <g stroke="#6b565c" stroke-width="1.6">
-            <rect x="76" y="64" width="276" height="8" rx="3" fill="#f7d3be" />
-            <ellipse cx="110" cy="52" rx="16" ry="11" fill="#f7a8c2" />
-            <polygon points="94,52 86,44 88,55" fill="#f7a8c2" />
-            <ellipse cx="176" cy="60" rx="28" ry="4" fill="#ffffff" />
-            <ellipse cx="176" cy="54" rx="28" ry="4" fill="#ffffff" />
-            <ellipse cx="176" cy="48" rx="26" ry="4" fill="#ffffff" />
-            <ellipse cx="250" cy="60" rx="28" ry="4" fill="#e6ecfc" />
-            <ellipse cx="250" cy="54" rx="28" ry="4" fill="#e6ecfc" />
-            <ellipse cx="250" cy="48" rx="26" ry="4" fill="#e6ecfc" />
-            <rect x="298" y="46" width="28" height="17" rx="5" fill="#e0ccf7" />
-            <rect x="326" y="51" width="14" height="6" rx="3" fill="#e0ccf7" />
-          </g>
-
-          <!-- Second Shelf (Clickable Snacks & Treats) -->
-          <g class="svg-hotspot" data-modal="snacks" stroke="#6b565c" stroke-width="1.6">
-            <rect x="76" y="132" width="276" height="8" rx="3" fill="#f7d3be" />
-            <rect x="98" y="106" width="22" height="26" rx="5" fill="#e6ecfc" />
-            <circle cx="104" cy="96" r="4" fill="#ffffff" />
-            <circle cx="115" cy="96" r="4" fill="#ffffff" />
-            <rect x="130" y="102" width="26" height="30" rx="6" fill="#ffffff" />
-            <rect x="140" y="84" width="5" height="24" rx="2" fill="#f7a8c2" />
-            <path d="M168,112 h46 a23,20 0 0 1 -46,0 z" fill="#f7a8c2" />
-            <rect x="232" y="122" width="36" height="5" rx="2" fill="#fff099" />
-            <rect x="232" y="127" width="36" height="5" rx="2" fill="#e6ecfc" />
-            <path d="M280,114 h26 a13,18 0 0 1 -26,0 z" fill="#fff8d6" />
-            <path d="M304,114 h30 a15,18 0 0 1 -30,0 z" fill="#fff8d6" />
-          </g>
-
-          <!-- Hanging Utensils -->
-          <g stroke="#6b565c" stroke-width="1.6">
-            <line x1="158" y1="158" x2="276" y2="158" />
-            <rect x="166" y="164" width="20" height="28" rx="9" transform="rotate(-12 166 164)" fill="#f7c8b6" />
-            <rect x="193" y="182" width="18" height="26" rx="4" fill="#f7a8c2" />
-            <line x1="202" y1="164" x2="202" y2="182" stroke-width="3" />
-            <polygon points="226,182 238,182 242,208 222,208" fill="#fff099" />
-            <line x1="232" y1="164" x2="232" y2="182" stroke-width="3" />
-            <circle cx="255" cy="202" r="7" fill="#f7a8c2" />
-            <line x1="262" y1="164" x2="262" y2="202" />
-          </g>
-
-          <!-- Counter & Gingham Cabinets -->
-          <g stroke="#6b565c" stroke-width="1.6">
-            <polygon points="26,242 334,242 346,258 14,258" fill="#f7b7cb" />
-            <rect x="22" y="258" width="316" height="92" rx="6" fill="#ffffff" />
-            <rect x="38" y="272" width="120" height="64" rx="10" fill="#f7b7cb" />
-            <rect x="50" y="282" width="84" height="44" rx="6" fill="#fdf2f6" />
-            <line x1="58" y1="296" x2="126" y2="296" stroke="#ffe08c" stroke-width="2" />
-            <line x1="58" y1="306" x2="126" y2="306" stroke="#ffe08c" stroke-width="2" />
-            <circle cx="145" cy="292" r="6" fill="#ffffff" />
-            <circle cx="145" cy="314" r="6" fill="#ffffff" />
-            <rect x="184" y="272" width="66" height="64" rx="8" fill="#fae3dc" />
-            <rect x="258" y="272" width="66" height="64" rx="8" fill="#fae3dc" />
-            <circle cx="240" cy="284" r="3" fill="#f5bd7a" />
-            <circle cx="268" cy="284" r="3" fill="#f5bd7a" />
-            <rect x="236" y="246" width="96" height="8" rx="3" fill="#e889a8" />
-            <path d="M294,246 v-28 c0,-14 -16,-14 -16,-2" fill="none" stroke="#e889a8" stroke-width="3" />
-          </g>
-
-          <!-- Clickable Dutch Oven (Baking Recipes) -->
-          <g class="svg-hotspot" data-modal="recipes" stroke="#6b565c" stroke-width="1.6">
-            <rect x="38" y="244" width="76" height="6" rx="3" fill="#e6ecfc" />
-            <rect x="44" y="222" width="64" height="22" rx="8" fill="#ffffff" />
-            <path d="M42,222 h68 a34,12 0 0 0 -68,0 z" fill="#ffffff" />
-            <path d="M76,204 c-5,-8 -14,-1 -7,7 l7,7 l7,-7 c7,-8 -2,-15 -7,-7 z" fill="#f79eb8" />
-          </g>
-
-          <!-- Clickable Jam & Honey Jars -->
-          <g class="svg-hotspot" data-modal="jam" stroke="#6b565c" stroke-width="1.6">
-            <rect x="124" y="244" width="88" height="6" rx="3" fill="#f5d1a6" />
-            <rect x="134" y="220" width="26" height="24" rx="5" fill="#fff7cc" />
-            <rect x="132" y="214" width="30" height="7" rx="3" fill="#ffffff" />
-            <rect x="152" y="224" width="28" height="24" rx="6" fill="#ffffff" />
-            <rect x="150" y="218" width="32" height="7" rx="3" fill="#f7b7cb" />
-          </g>
-        </svg>
-      </div>
-
-      <div class="card-footer">
-        <button class="btn-soft" data-room="living" type="button">← Back to Living Room</button>
-        <button class="btn-primary" data-room="yard" type="button">Front Yard 🏡</button>
-      </div>
-    </section>
-  </div>
-
-  <!-- Interactive Popup Modal -->
-  <div class="modal-backdrop" id="storyModal" aria-hidden="true">
-    <div class="modal-box" role="dialog" aria-modal="true" aria-labelledby="modalTitle">
-      <button class="modal-close" id="closeModal" type="button" aria-label="Close">✕</button>
-      <div class="modal-badge" id="modalBadge">🌸 Atelier Note</div>
-      <h3 id="modalTitle">Title</h3>
-      <p id="modalBody">Story details appear here.</p>
-      <button class="btn-primary" style="width: 100%" id="okModal" type="button">Lovely ✨</button>
+      <div class="modal-body" id="memoriesContainer"></div>
     </div>
   </div>
 
-  <script>
-    const STORY_CONTENT = {
-      memory: {
-        badge: "🖼️ Living Room · Memory Wall",
-        title: "Gallery Wall Memories",
-        body: "Precious snapshots and keepsakes hanging on our cozy living room wall."
-      },
-      diary: {
-        badge: "📖 Scrapbook & Sketchbook",
-        title: "Cozy Atelier Notes",
-        body: "Filled with pastel sticker layouts, watercolor swatches, and ideas for Mochi and Boba Atelier."
-      },
-      tea: {
-        badge: "🫖 Living Room · Tea Set",
-        title: "Rosehip & Vanilla Tea",
-        body: "A warm porcelain teapot steeped with rosebuds and vanilla bean, served with pastel macarons."
-      },
-      snacks: {
-        badge: "🍓 Kitchen · Top Shelf",
-        title: "Strawberry Mochi & Treats",
-        body: "Soft pink daifuku dusted with sweet rice flour alongside crisp butter biscuits."
-      },
-      recipes: {
-        badge: "🥧 Kitchen · Dutch Oven",
-        title: "Honey Milk Brioche",
-        body: "Whisk warm milk, honey, and yeast, knead until pillowy, and bake until golden brown."
-      },
-      jam: {
-        badge: "🍯 Kitchen · Jam & Honey",
-        title: "Peach Blossom Jam",
-        body: "Small-batch summer peaches simmered with lemon zest and clover honey."
-      }
-    };
+  <div id="diaryModal" class="modal-backdrop" onclick="backdropClose(event, 'diaryModal')">
+    <div class="modal-card">
+      <div class="modal-top">
+        <h2>📖 Open Scrapbook Diary</h2>
+        <button type="button" class="close-btn" onclick="closeModal('diaryModal')">✕</button>
+      </div>
+      <div class="modal-body">
+        <form class="diary-form" onsubmit="addDiaryNote(event)">
+          <div style="font-size: 12px; font-weight: 800;">✍️ Write a new memory note:</div>
+          <input type="text" id="diaryTitleInput" class="diary-input" placeholder="Memory title (e.g. Rainy Afternoon Tea)..." required maxlength="45" />
+          <textarea id="diaryBodyInput" class="diary-input" rows="2" placeholder="Write what made today feel special..." required maxlength="180"></textarea>
+          <button type="submit" class="btn-primary" style="align-self: flex-end; padding: 8px 14px; font-size: 12px;">
+            Save to Scrapbook ✨
+          </button>
+        </form>
+        <div id="diaryEntriesContainer" style="display: flex; flex-direction: column; gap: 10px;"></div>
+      </div>
+    </div>
+  </div>
 
-    function switchRoom(roomKey) {
-      document.querySelectorAll(".room-card").forEach((card) => {
-        card.classList.toggle("active", card.id === `room-${roomKey}`);
+  <div id="teaModal" class="modal-backdrop" onclick="backdropClose(event, 'teaModal')">
+    <div class="modal-card">
+      <div class="modal-top">
+        <h2>🫖 Cozy Tea &amp; Keepsake Stuffs</h2>
+        <button type="button" class="close-btn" onclick="closeModal('teaModal')">✕</button>
+      </div>
+      <div class="modal-body">
+        <div class="info-card">
+          <div class="card-header-row">
+            <span class="card-title">🌸 Rosehip &amp; Vanilla Teapot</span>
+            <span class="card-tag">Warm &amp; Floral</span>
+          </div>
+          <p class="card-text">Brewed in our pastel pink porcelain pot and served with delicate pistachio &amp; rosewater macarons on the coffee table.</p>
+        </div>
+        <div class="info-card cream">
+          <div class="card-header-row">
+            <span class="card-title">🛍️ Ribbon Gift Bags by the Sofa</span>
+            <span class="card-tag">Treasured Stuffs</span>
+          </div>
+          <p class="card-text">Filled with pressed flower bookmarks, pastel stationery rolls, Polaroid film packs, and lavender-scented sachets.</p>
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <div id="recipesModal" class="modal-backdrop" onclick="backdropClose(event, 'recipesModal')">
+    <div class="modal-card">
+      <div class="modal-top">
+        <h2>🧁 My Kitchen Baking Recipes</h2>
+        <button type="button" class="close-btn" onclick="closeModal('recipesModal')">✕</button>
+      </div>
+      <div class="modal-body" id="recipesContainer"></div>
+    </div>
+  </div>
+
+  <div id="snacksModal" class="modal-backdrop" onclick="backdropClose(event, 'snacksModal')">
+    <div class="modal-card">
+      <div class="modal-top">
+        <h2>🍓 Pantry Snacks &amp; Sweet Treats</h2>
+        <button type="button" class="close-btn" onclick="closeModal('snacksModal')">✕</button>
+      </div>
+      <div class="modal-body" id="snacksContainer"></div>
+    </div>
+  </div>
+
+  <div id="toast" class="toast"></div>
+    <script>
+    const MEMORIES = [
+      {
+        icon: "🌿",
+        title: "Pressed Spring Wildflowers",
+        date: "Frame #1 · pic1",
+        note: "Daisies and chamomile blossoms gathered along the cobblestone path and pressed inside heavy linen pages."
+      },
+      {
+        icon: "🌷",
+        title: "Morning Tulip Sketch",
+        date: "Frame #2 · pic2",
+        note: "Painted in soft watercolor while morning sunlight poured through the cottage curtains."
+      },
+      {
+        icon: "🥖",
+        title: "Sunday Bakery Toast & Brioche",
+        date: "Frame #3 · pic3",
+        note: "Warm crusty bread and golden brioche from the corner bakery, paired with whipped honey butter."
+      },
+      {
+        icon: "✨",
+        title: "Starlight Postcard Keepsake",
+        date: "Frame #4 · pic4",
+        note: "A pastel postcard reminding us to slow down, enjoy warm tea, and treasure quiet everyday moments."
+      }
+    ];
+
+    const RECIPES = [
+      {
+        icon: "🍰",
+        title: "Strawberry Cloud Shortcake",
+        time: "35 mins · Easy",
+        ingredients: "Cake flour, 3 eggs, vanilla bean paste, heavy whipping cream, fresh strawberries, powdered sugar.",
+        steps: [
+          "Whisk room-temperature eggs and sugar until pale, ribbony, and fluffy.",
+          "Gently fold in sifted cake flour and warm melted butter, then bake at 170°C for 22 minutes.",
+          "Layer cooled sponge rounds with softly whipped vanilla cream and sliced sweet strawberries."
+        ]
+      },
+      {
+        icon: "🥐",
+        title: "Honey Butter Brioche Rolls",
+        time: "45 mins · Warm & Soft",
+        ingredients: "Bread flour, warm milk, active yeast, unsalted butter, wildflower honey, pinch of sea salt.",
+        steps: [
+          "Knead soft dough with softened butter until smooth and elastic, then let rise until doubled.",
+          "Shape into 8 plump pastel-golden rolls and nestle inside a parchment-lined baking pan.",
+          "Bake at 180°C for 18 minutes and brush immediately with warm wildflower honey butter."
+        ]
+      },
+      {
+        icon: "🍪",
+        title: "Pastel Sugar Cookies",
+        time: "25 mins · Crisp Edges",
+        ingredients: "Unsalted butter, caster sugar, egg yolk, almond extract, all-purpose flour, pastel royal icing.",
+        steps: [
+          "Cream butter and caster sugar together until light, then mix in egg yolk and almond extract.",
+          "Roll dough to 5mm thickness, cut into hearts and blossoms, and chill for 10 minutes.",
+          "Bake at 175°C for 11 minutes until edges turn barely golden, then decorate with pastel icing."
+        ]
+      }
+    ];
+
+    const SNACKS = [
+      {
+        icon: "🍓",
+        title: "Homemade Strawberry Rose Jam",
+        badge: "Top Jar · Sweet",
+        note: "Slow-simmered crushed spring strawberries with a splash of lemon juice and fragrant rosewater. Best spread thick on warm toast!"
+      },
+      {
+        icon: "🍯",
+        title: "Golden Blossom Wildflower Honey",
+        badge: "Pantry Jar · Floral",
+        note: "Silky, amber-gold honey harvested from meadow blossoms—wonderful drizzled over scones, yogurt bowls, or chamomile tea."
+      },
+      {
+        icon: "🧋",
+        title: "Strawberry Mason Jar Milk Drink",
+        badge: "Shelf Treat · Chilled",
+        note: "Fresh strawberry puree swirled with cold creamy milk and served in our polka-dot mason jar with a pink straw."
+      },
+      {
+        icon: "🍡",
+        title: "Pastel Macaron & Biscuit Tin",
+        badge: "Tea Time · Crisp",
+        note: "Bite-sized rose, pistachio, and vanilla cream macarons baked fresh for afternoon tea in the living room."
+      }
+    ];
+
+    const DEFAULT_DIARY = [
+      {
+        title: "First Day in Our Pastel Cottage",
+        text: "Unpacked our favorite tea cups, hung the four memory frames on the living room wall, and baked a batch of strawberry shortcake."
+      },
+      {
+        title: "Afternoon Macarons & Raindrops",
+        text: "Listened to gentle rain against the arched windows while sipping rosehip tea on the lavender sofa."
+      }
+    ];
+
+    let soundEnabled = true;
+    let audioCtx = null;
+
+    function playChime(notes = [523.25, 659.25, 783.99]) {
+      if (!soundEnabled) return;
+      try {
+        if (!audioCtx) {
+          const AudioContextClass = window.AudioContext || window.webkitAudioContext;
+          if (AudioContextClass) audioCtx = new AudioContextClass();
+        }
+        if (!audioCtx) return;
+        if (audioCtx.state === "suspended") audioCtx.resume();
+
+        notes.forEach((freq, idx) => {
+          const now = audioCtx.currentTime + idx * 0.09;
+          const osc = audioCtx.createOscillator();
+          const gain = audioCtx.createGain();
+          osc.type = "sine";
+          osc.frequency.setValueAtTime(freq, now);
+          gain.gain.setValueAtTime(0.001, now);
+          gain.gain.exponentialRampToValueAtTime(0.05, now + 0.02);
+          gain.gain.exponentialRampToValueAtTime(0.0001, now + 0.45);
+          osc.connect(gain);
+          gain.connect(audioCtx.destination);
+          osc.start(now);
+          osc.stop(now + 0.46);
+        });
+      } catch (e) {}
+    }
+
+    function toggleSound() {
+      soundEnabled = !soundEnabled;
+      const btn = document.getElementById("soundToggle");
+      btn.textContent = soundEnabled ? "🔔" : "🔕";
+      showToast(soundEnabled ? "🔔 Doorbell chimes ON" : "🔕 Doorbell chimes muted");
+      if (soundEnabled) playChime([659.25, 880]);
+    }
+
+    function goToRoom(roomKey) {
+      ["exterior", "living", "kitchen"].forEach(key => {
+        document.getElementById(`room-${key}`).classList.toggle("active", key === roomKey);
+        document.getElementById(`nav-${key}`).classList.toggle("active", key === roomKey);
       });
-      document.querySelectorAll(".nav-pill").forEach((pill) => {
-        pill.classList.toggle("active", pill.dataset.room === roomKey);
-      });
+      playChime(roomKey === "exterior" ? [659.25, 523.25] : [523.25, 659.25, 783.99]);
       window.scrollTo({ top: 0, behavior: "smooth" });
     }
 
-    const modal = document.getElementById("storyModal");
-    const modalBadge = document.getElementById("modalBadge");
-    const modalTitle = document.getElementById("modalTitle");
-    const modalBody = document.getElementById("modalBody");
-
-    function openStoryModal(key) {
-      const item = STORY_CONTENT[key];
-      if (!item) return;
-      modalBadge.textContent = item.badge;
-      modalTitle.textContent = item.title;
-      modalBody.textContent = item.body;
-      modal.classList.add("open");
-      modal.setAttribute("aria-hidden", "false");
+    function enterHouse() {
+      playChime([523.25, 659.25, 783.99, 1046.5]);
+      showToast("✨ Welcome inside the Living Room!");
+      goToRoom("living");
     }
 
-    function closeStoryModal() {
-      modal.classList.remove("open");
-      modal.setAttribute("aria-hidden", "true");
+    function openModal(id) {
+      document.getElementById(id).classList.add("open");
+      playChime([783.99, 987.77]);
     }
 
-    document.addEventListener("click", (e) => {
-      const roomTrigger = e.target.closest("[data-room]");
-      if (roomTrigger) {
-        switchRoom(roomTrigger.dataset.room);
-        return;
-      }
-      const enterTrigger = e.target.closest('[data-action="enter-house"]');
-      if (enterTrigger) {
-        switchRoom("living");
-        return;
-      }
-      const modalTrigger = e.target.closest("[data-modal]");
-      if (modalTrigger) {
-        openStoryModal(modalTrigger.dataset.modal);
-      }
-    });
+    function closeModal(id) {
+      document.getElementById(id).classList.remove("open");
+    }
 
-    document.getElementById("closeModal").addEventListener("click", closeStoryModal);
-    document.getElementById("okModal").addEventListener("click", closeStoryModal);
-    modal.addEventListener("click", (e) => {
-      if (e.target === modal) closeStoryModal();
-    });
+    function backdropClose(event, id) {
+      if (event.target.id === id) closeModal(id);
+    }
+
+    function openMemoriesModal() {
+      const container = document.getElementById("memoriesContainer");
+      container.innerHTML = MEMORIES.map((m, i) => `
+        <div class="info-card ${i % 2 === 1 ? "cream" : ""}">
+          <div class="card-header-row">
+            <span class="card-title">${m.icon} ${escapeHtml(m.title)}</span>
+            <span class="card-tag">${escapeHtml(m.date)}</span>
+          </div>
+          <p class="card-text">${escapeHtml(m.note)}</p>
+        </div>
+      `).join("");
+      openModal("memoriesModal");
+    }
+
+    function openTeaKeepsakeModal() {
+      openModal("teaModal");
+    }
+
+    function openRecipesModal() {
+      const container = document.getElementById("recipesContainer");
+      container.innerHTML = RECIPES.map((r, i) => `
+        <div class="info-card ${i % 2 === 1 ? "cream" : ""}">
+          <div class="card-header-row">
+            <span class="card-title">${r.icon} ${escapeHtml(r.title)}</span>
+            <span class="card-tag">${escapeHtml(r.time)}</span>
+          </div>
+          <p class="card-text" style="margin-bottom: 6px;"><strong>Ingredients:</strong> ${escapeHtml(r.ingredients)}</p>
+          <ol class="recipe-steps">
+            ${r.steps.map(step => `<li>${escapeHtml(step)}</li>`).join("")}
+          </ol>
+        </div>
+      `).join("");
+      openModal("recipesModal");
+    }
+
+    function openSnacksModal() {
+      const container = document.getElementById("snacksContainer");
+      container.innerHTML = SNACKS.map((s, i) => `
+        <div class="info-card ${i % 3 === 1 ? "cream" : i % 3 === 2 ? "mint" : ""}">
+          <div class="card-header-row">
+            <span class="card-title">${s.icon} ${escapeHtml(s.title)}</span>
+            <span class="card-tag">${escapeHtml(s.badge)}</span>
+          </div>
+          <p class="card-text">${escapeHtml(s.note)}</p>
+        </div>
+      `).join("");
+      openModal("snacksModal");
+    }
+
+    function loadDiaryEntries() {
+      try {
+        const saved = localStorage.getItem("pastel_cottage_diary_v1");
+        return saved ? JSON.parse(saved) : DEFAULT_DIARY;
+      } catch (e) {
+        return DEFAULT_DIARY;
+      }
+    }
+
+    function renderDiaryEntries() {
+      const entries = loadDiaryEntries();
+      const container = document.getElementById("diaryEntriesContainer");
+      container.innerHTML = entries.map(entry => `
+        <div class="info-card">
+          <div class="card-header-row">
+            <span class="card-title">🌸 ${escapeHtml(entry.title)}</span>
+            <span class="card-tag">Memory</span>
+          </div>
+          <p class="card-text">${escapeHtml(entry.text)}</p>
+        </div>
+      `).join("");
+    }
+
+    function openDiaryModal() {
+      renderDiaryEntries();
+      openModal("diaryModal");
+    }
+
+    function addDiaryNote(event) {
+      event.preventDefault();
+      const titleInput = document.getElementById("diaryTitleInput");
+      const bodyInput = document.getElementById("diaryBodyInput");
+      const title = titleInput.value.trim();
+      const text = bodyInput.value.trim();
+      if (!title || !text) return;
+
+      const entries = loadDiaryEntries();
+      entries.unshift({ title, text });
+      try {
+        localStorage.setItem("pastel_cottage_diary_v1", JSON.stringify(entries.slice(0, 25)));
+      } catch (e) {}
+
+      titleInput.value = "";
+      bodyInput.value = "";
+      renderDiaryEntries();
+      playChime([659.25, 783.99, 1046.5]);
+      showToast("📖 Saved memory to your scrapbook!");
+    }
+
+    let toastTimeout = null;
+    function showToast(msg) {
+      const toast = document.getElementById("toast");
+      toast.textContent = msg;
+      toast.classList.add("show");
+      clearTimeout(toastTimeout);
+      toastTimeout = setTimeout(() => toast.classList.remove("show"), 2200);
+    }
+
+    function escapeHtml(str) {
+      return String(str).replace(/[&<>"']/g, ch => ({
+        "&": "&amp;",
+        "<": "&lt;",
+        ">": "&gt;",
+        '"': "&quot;",
+        "'": "&#39;"
+      }[ch]));
+    }
   </script>
 </body>
 </html>
-
-        
