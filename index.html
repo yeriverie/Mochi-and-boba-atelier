@@ -1483,19 +1483,24 @@
         "'": "&#39;"
       }[ch]));
     }
-
 const bgMusic = document.getElementById("bgMusic");
 if (bgMusic) {
-  bgMusic.volume = 0.35;
-  bgMusic.play().catch(() => {});
+  bgMusic.volume = 0.5;
+  bgMusic.addEventListener("error", () => {
+    showToast("❌ Couldn't load bgm.mp3 (check filename/folder)");
+  });
 }
 
 document.addEventListener("pointerdown", () => {
-  if (bgMusic && bgMusic.paused) {
-    bgMusic.play().catch(() => {});
-  }
+  if (!bgMusic) return;
+  bgMusic.play().then(() => {
+    showToast("🎵 MP3 started!");
+  }).catch((err) => {
+    showToast("❌ Audio blocked: " + err.message);
+  });
 }, { once: true });
-      
+                          
+
       
   </script>
 </body>
